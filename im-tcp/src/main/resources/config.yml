@@ -5,6 +5,7 @@ im:
   workThreadSize: 8
   hearBertTimeOut: 3000 #单位毫秒
   brokerId: 1000
+  loginModel: 3  #单端登录
   redis:
     mode: single # 单机模式：single 哨兵模式：sentinel 集群模式：cluster
     database: 0

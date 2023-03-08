@@ -29,6 +29,7 @@ public class BootstrapConfig {
          * brokerId
          */
         private Integer brokerId;
+        private Integer loginModel;
 
     }
 

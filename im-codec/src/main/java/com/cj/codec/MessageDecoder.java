@@ -7,13 +7,9 @@ import com.cj.codec.proto.MessageHeader;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
-import io.netty.handler.codec.json.JsonObjectDecoder;
-import jdk.nashorn.internal.parser.JSONParser;
-import lombok.Data;
 
 import java.util.List;
 
-@Data
 public class MessageDecoder extends ByteToMessageDecoder {
 
 
@@ -47,6 +43,7 @@ public class MessageDecoder extends ByteToMessageDecoder {
         messageHeader.setAppId(appId);
         messageHeader.setMessageType(messageType);
         messageHeader.setImeiLength(imeiLength);
+        messageHeader.setImei(imei);
         messageHeader.setBodyLen(bodyLen);
 
         Message message = new Message();

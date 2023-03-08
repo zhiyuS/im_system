@@ -27,5 +27,9 @@ public class UserSession {
      * brokerHost
      */
     private String brokerHost;
+    /**
+     * imei
+     */
+    private String imei;
 
 }
