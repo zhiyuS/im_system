@@ -7,6 +7,7 @@ import com.cj.codec.pack.LoginPack;
 import com.cj.codec.proto.Message;
 import com.cj.im.common.constant.Constants;
 import com.cj.im.common.enums.ImConnectStatusEnum;
+import com.cj.im.common.enums.command.SystemCommand;
 import com.cj.im.common.model.UserSession;
 import com.cj.im.tcp.redis.RedisManage;
 import com.cj.im.tcp.util.SessionSocketHolder;
@@ -18,15 +19,14 @@ import io.netty.util.AttributeKey;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 
-import static com.cj.im.common.enums.command.SystemCommand.LOGIN;
-import static com.cj.im.common.enums.command.SystemCommand.LOGOUT;
+import static com.cj.im.common.enums.command.SystemCommand.*;
 
 public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
         Integer command = msg.getMessageHeader().getCommand();
-        if(command == LOGIN.getCommand()){
+        if(command == SystemCommand.LOGIN.getCommand()){
 
             LoginPack loginPack = JSONObject.parseObject(JSON.toJSONString(msg.getMessagePack()), LoginPack.class);
 
@@ -49,19 +49,24 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
 
             SessionSocketHolder.put(loginPack.getUserId(), loginPack.getAppId(), loginPack.getClientType(),(NioSocketChannel)ctx.channel());
 
-        }else if(command == LOGOUT.getCommand()){
+        }else if(command == SystemCommand.LOGOUT.getCommand()){
             //TODO 退出登录
-            String userId = (String) ctx.channel().attr(AttributeKey.valueOf(Constants.UserId)).get();
-            Integer appId = (Integer) ctx.channel().attr(AttributeKey.valueOf(Constants.AppId)).get();
-            Integer clientType = (Integer)ctx.channel().attr(AttributeKey.valueOf(Constants.ClientType)).get();
-
-            SessionSocketHolder.remove(userId,appId,clientType);
-
-            RedissonClient redissonClient = RedisManage.getRedissonClient();
-            RMap<String, String> map = redissonClient.getMap(appId + Constants.RedisConstants.UserSessionConstants + userId);
-            map.remove(msg.getMessageHeader().getClientType());
-
+            SessionSocketHolder.logout((NioSocketChannel) ctx.channel());
+        }else if(command == SystemCommand.PING.getCommand()){
+            ctx.channel().attr(AttributeKey.valueOf(Constants.ReadTime)).set(System.currentTimeMillis());
+            int a = 1;
         }
 
+    }
+
+    /**
+     * 触发读写超时时间会触发
+     * @param ctx
+     * @param evt
+     * @throws Exception
+     */
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        super.userEventTriggered(ctx, evt);
     }
 }

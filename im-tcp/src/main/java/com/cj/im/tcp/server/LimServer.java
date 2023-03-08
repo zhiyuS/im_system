@@ -4,6 +4,7 @@ package com.cj.im.tcp.server;
 import com.cj.codec.MessageDecoder;
 import com.cj.codec.config.BootstrapConfig;
 import com.cj.im.tcp.handler.DiscardServerHandler;
+import com.cj.im.tcp.handler.HeartBertServerHandler;
 import com.cj.im.tcp.handler.NettyServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -32,9 +33,12 @@ public class LimServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
-                        ch.pipeline().addLast(new IdleStateHandler(0,0,10));
                         ch.pipeline().addLast(new MessageDecoder());
+
                         ch.pipeline().addLast(new NettyServerHandler());
+                        ch.pipeline().addLast(new IdleStateHandler(0,0,1));
+                        ch.pipeline().addLast(new HeartBertServerHandler(config.getHearBertTimeOut()));
+
                     }
                 })
                 .option(ChannelOption.SO_BACKLOG, 128)          // (5)

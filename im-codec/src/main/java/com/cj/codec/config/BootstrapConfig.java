@@ -16,6 +16,35 @@ public class BootstrapConfig {
         private Integer bossThreadSize;
         private Integer workThreadSize;
         private RedisConfig redis;
+        private Integer hearBertTimeOut;
+        /**
+         * rabbitmq配置
+         */
+        private Rabbitmq rabbitmq;
+        /**
+         * zk配置
+         */
+        private ZkConfig zkConfig;
+
+    }
+
+    /**
+     * rabbitmq哨兵模式配置
+     */
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Rabbitmq {
+        private String host;
+
+        private Integer port;
+
+        private String virtualHost;
+
+        private String userName;
+
+        private String password;
     }
     @Data
     @Builder
@@ -69,6 +98,18 @@ public class BootstrapConfig {
          * 地址
          */
         private String address;
+    }
+    @Data
+    public static class ZkConfig {
+        /**
+         * zk连接地址
+         */
+        private String zkAddr;
+
+        /**
+         * zk连接超时时间
+         */
+        private Integer zkConnectTimeOut;
     }
 
 }
