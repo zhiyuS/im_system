@@ -3,6 +3,7 @@ package com.cj.im.tcp.handler;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.cj.codec.config.BootstrapConfig;
 import com.cj.codec.pack.LoginPack;
 import com.cj.codec.proto.Message;
 import com.cj.im.common.constant.Constants;
@@ -19,9 +20,16 @@ import io.netty.util.AttributeKey;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 
+import java.net.InetAddress;
+
 import static com.cj.im.common.enums.command.SystemCommand.*;
 
 public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
+
+    private Integer brokerId;
+    public NettyServerHandler(Integer brokerId){
+        this.brokerId = brokerId;
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
@@ -42,10 +50,13 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
             userSession.setConnectStatus(ImConnectStatusEnum.ONLINE_STATUS.getCode());
             userSession.setVersion(msg.getMessageHeader().getVersion());
 
+            // 添加brokerId,brokerHost
+            userSession.setBrokerId(brokerId);
+            userSession.setBrokerHost(InetAddress.getLocalHost().getHostAddress());
             //当到redis
             RedissonClient redissonClient = RedisManage.getRedissonClient();
             RMap<String, String> map = redissonClient.getMap(msg.getMessageHeader().getAppId() + Constants.RedisConstants.UserSessionConstants + loginPack.getUserId());
-            map.put(msg.getMessageHeader().getClientType()+"",JSON.toJSONString(msg));
+            map.put(msg.getMessageHeader().getClientType()+"",JSON.toJSONString(userSession));
 
             SessionSocketHolder.put(loginPack.getUserId(), loginPack.getAppId(), loginPack.getClientType(),(NioSocketChannel)ctx.channel());
 

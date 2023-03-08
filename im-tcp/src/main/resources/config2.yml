@@ -1,9 +1,10 @@
 im:
-  tcpPort: 9000
-  webSocketPort: 19000
+  tcpPort: 9001
+  webSocketPort: 19001
   bossThreadSize: 1
   workThreadSize: 8
   hearBertTimeOut: 3000 #单位毫秒
+  brokerId: 1001
   redis:
     mode: single # 单机模式：single 哨兵模式：sentinel 集群模式：cluster
     database: 0

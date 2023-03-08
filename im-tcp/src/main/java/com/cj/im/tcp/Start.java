@@ -37,7 +37,7 @@ public class Start {
 
             RedisManage.init(bootstrapConfig);
             MqFactory.init(bootstrapConfig.getIm().getRabbitmq());
-            MqMessageConsumer.init();
+            MqMessageConsumer.init(bootstrapConfig.getIm().getBrokerId().toString());
             registerZk(bootstrapConfig);
 
         } catch (Exception e) {

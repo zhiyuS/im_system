@@ -19,5 +19,13 @@ public class UserSession {
      * 连接状态 1：上线 2：离线
      */
     private Integer connectStatus;
+    /**
+     * brokerId
+     */
+    private Integer brokerId;
+    /**
+     * brokerHost
+     */
+    private String brokerHost;
 
 }
