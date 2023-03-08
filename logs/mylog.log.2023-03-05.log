@@ -1,0 +1,903 @@
+2023-03-05 21:15:50 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 30924 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:15:50 -The following profiles are active: dev
+2023-03-05 21:15:51 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:15:51 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:15:51 -Starting service [Tomcat]
+2023-03-05 21:15:51 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:15:51 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:15:51 -Root WebApplicationContext: initialization completed in 1287 ms
+2023-03-05 21:15:51 -Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'userService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.cj.im.service.user.service.UserService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2023-03-05 21:15:51 -Stopping service [Tomcat]
+2023-03-05 21:15:51 -
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-03-05 21:15:51 -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field userService in com.cj.im.service.user.controller.ImUserController required a bean of type 'com.cj.im.service.user.service.UserService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.cj.im.service.user.service.UserService' in your configuration.
+
+2023-03-05 21:17:16 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 21368 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:17:16 -The following profiles are active: dev
+2023-03-05 21:17:17 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:17:17 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:17:17 -Starting service [Tomcat]
+2023-03-05 21:17:17 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:17:17 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:17:17 -Root WebApplicationContext: initialization completed in 1191 ms
+2023-03-05 21:17:19 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:17:19 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:17:19 -Started ServiceApplication in 4.269 seconds (JVM running for 6.036)
+2023-03-05 21:21:49 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 21:21:49 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 21:21:49 -Completed initialization in 0 ms
+2023-03-05 21:21:49 -Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'text/plain;charset=UTF-8' not supported]
+2023-03-05 21:22:04 -Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'text/plain;charset=UTF-8' not supported]
+2023-03-05 21:22:18 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.cj.im.service.user.service.impl.UserServiceImpl.imortUser(UserServiceImpl.java:22)
+	at com.cj.im.service.user.controller.ImUserController.importUser(ImUserController.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2023-03-05 21:23:31 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.cj.im.service.user.service.impl.UserServiceImpl.imortUser(UserServiceImpl.java:22)
+	at com.cj.im.service.user.controller.ImUserController.importUser(ImUserController.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2023-03-05 21:29:49 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.cj.im.service.user.service.impl.UserServiceImpl.imortUser(UserServiceImpl.java:22)
+	at com.cj.im.service.user.controller.ImUserController.importUser(ImUserController.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2023-03-05 21:29:56 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.cj.im.service.user.service.impl.UserServiceImpl.imortUser(UserServiceImpl.java:22)
+	at com.cj.im.service.user.controller.ImUserController.importUser(ImUserController.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2023-03-05 21:30:19 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 35452 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:30:19 -The following profiles are active: dev
+2023-03-05 21:30:19 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 21:30:20 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:30:20 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:30:20 -Starting service [Tomcat]
+2023-03-05 21:30:20 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:30:20 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:30:20 -Root WebApplicationContext: initialization completed in 1216 ms
+2023-03-05 21:30:22 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:30:22 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:30:22 -Started ServiceApplication in 4.296 seconds (JVM running for 6.081)
+2023-03-05 21:30:31 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 21:30:31 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 21:30:31 -Completed initialization in 1 ms
+2023-03-05 21:30:31 -HikariPool-1 - Starting...
+2023-03-05 21:30:33 -HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: Access denied for user 'root'@'110.53.134.178' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:829)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:242)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:337)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:86)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:181)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at com.sun.proxy.$Proxy64.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy67.insert(Unknown Source)
+	at com.cj.im.service.user.service.impl.UserServiceImpl.lambda$importUser$0(UserServiceImpl.java:29)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at com.cj.im.service.user.service.impl.UserServiceImpl.importUser(UserServiceImpl.java:28)
+	at com.cj.im.service.user.controller.ImUserController.importUser(ImUserController.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2023-03-05 21:30:41 -HikariPool-1 - Starting...
+2023-03-05 21:30:42 -HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: Access denied for user 'root'@'110.53.134.178' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:829)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:242)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:337)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:86)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:181)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at com.sun.proxy.$Proxy64.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy67.insert(Unknown Source)
+	at com.cj.im.service.user.service.impl.UserServiceImpl.lambda$importUser$0(UserServiceImpl.java:29)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at com.cj.im.service.user.service.impl.UserServiceImpl.importUser(UserServiceImpl.java:28)
+	at com.cj.im.service.user.controller.ImUserController.importUser(ImUserController.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2023-03-05 21:31:51 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 33828 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:31:51 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 21:31:51 -The following profiles are active: dev
+2023-03-05 21:31:52 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:31:52 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:31:52 -Starting service [Tomcat]
+2023-03-05 21:31:52 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:31:52 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:31:52 -Root WebApplicationContext: initialization completed in 1271 ms
+2023-03-05 21:31:54 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:31:54 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:31:54 -Started ServiceApplication in 4.287 seconds (JVM running for 6.084)
+2023-03-05 21:32:30 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 21:32:30 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 26708 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:32:30 -The following profiles are active: dev
+2023-03-05 21:32:31 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:32:31 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:32:31 -Starting service [Tomcat]
+2023-03-05 21:32:31 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:32:32 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:32:32 -Root WebApplicationContext: initialization completed in 1305 ms
+2023-03-05 21:32:34 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:32:34 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:32:34 -Started ServiceApplication in 4.302 seconds (JVM running for 6.099)
+2023-03-05 21:32:51 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 21:32:51 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 33052 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:32:51 -The following profiles are active: dev
+2023-03-05 21:32:52 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:32:52 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:32:52 -Starting service [Tomcat]
+2023-03-05 21:32:52 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:32:52 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:32:52 -Root WebApplicationContext: initialization completed in 1241 ms
+2023-03-05 21:32:54 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:32:54 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:32:54 -Started ServiceApplication in 4.305 seconds (JVM running for 6.096)
+2023-03-05 21:33:21 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 36436 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:33:21 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 21:33:21 -The following profiles are active: dev
+2023-03-05 21:33:22 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:33:22 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:33:22 -Starting service [Tomcat]
+2023-03-05 21:33:22 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:33:22 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:33:22 -Root WebApplicationContext: initialization completed in 1234 ms
+2023-03-05 21:33:24 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:33:24 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:33:24 -Started ServiceApplication in 4.205 seconds (JVM running for 6.017)
+2023-03-05 21:33:34 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 21:33:34 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 21:33:34 -Completed initialization in 1 ms
+2023-03-05 21:33:34 -HikariPool-1 - Starting...
+2023-03-05 21:33:36 -HikariPool-1 - Start completed.
+2023-03-05 21:37:51 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 12276 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:37:51 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 21:37:51 -The following profiles are active: dev
+2023-03-05 21:37:53 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:37:53 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:37:53 -Starting service [Tomcat]
+2023-03-05 21:37:53 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:37:53 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:37:53 -Root WebApplicationContext: initialization completed in 1366 ms
+2023-03-05 21:37:56 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:37:56 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:37:56 -Started ServiceApplication in 4.761 seconds (JVM running for 7.421)
+2023-03-05 21:37:57 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 21:37:57 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 21:37:57 -Completed initialization in 1 ms
+2023-03-05 21:38:09 -HikariPool-1 - Starting...
+2023-03-05 21:38:11 -HikariPool-1 - Start completed.
+2023-03-05 21:41:22 -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m5s582ms798µs500ns).
+2023-03-05 21:43:05 -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s80ms489µs700ns).
+2023-03-05 21:51:09 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6d3a0459 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:14 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@57760470 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:19 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@638e0732 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:24 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@40e2bf78 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:29 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1b607ca6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:30 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1d4c9e8b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:34 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6a8bd799 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:39 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@584e0346 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:44 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@68e52e99 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:51:49 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@109d896f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:56:14 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3fc5c9ef (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 21:56:21 -HikariPool-1 - Shutdown initiated...
+2023-03-05 21:56:21 -HikariPool-1 - Shutdown completed.
+2023-03-05 21:56:24 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 3772 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 21:56:24 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 21:56:24 -The following profiles are active: dev
+2023-03-05 21:56:26 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 21:56:26 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:56:26 -Starting service [Tomcat]
+2023-03-05 21:56:26 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 21:56:26 -Initializing Spring embedded WebApplicationContext
+2023-03-05 21:56:26 -Root WebApplicationContext: initialization completed in 1231 ms
+2023-03-05 21:56:28 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 21:56:28 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 21:56:28 -Started ServiceApplication in 4.213 seconds (JVM running for 5.937)
+2023-03-05 21:56:36 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 21:56:36 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 21:56:36 -Completed initialization in 0 ms
+2023-03-05 22:20:43 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:20:43 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 39592 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:20:43 -The following profiles are active: dev
+2023-03-05 22:20:44 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:20:44 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:20:44 -Starting service [Tomcat]
+2023-03-05 22:20:44 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:20:44 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:20:44 -Root WebApplicationContext: initialization completed in 1231 ms
+2023-03-05 22:20:47 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:20:47 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:20:47 -Started ServiceApplication in 4.178 seconds (JVM running for 5.92)
+2023-03-05 22:34:10 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:34:10 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:34:10 -Completed initialization in 0 ms
+2023-03-05 22:35:42 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 31500 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:35:42 -The following profiles are active: dev
+2023-03-05 22:35:42 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:35:44 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:35:44 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:35:44 -Starting service [Tomcat]
+2023-03-05 22:35:44 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:35:44 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:35:44 -Root WebApplicationContext: initialization completed in 1371 ms
+2023-03-05 22:35:46 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:35:46 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:35:46 -Started ServiceApplication in 4.732 seconds (JVM running for 6.667)
+2023-03-05 22:35:49 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:35:49 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:35:49 -Completed initialization in 1 ms
+2023-03-05 22:36:21 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 42756 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:36:21 -The following profiles are active: dev
+2023-03-05 22:36:21 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:36:22 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:36:22 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:36:22 -Starting service [Tomcat]
+2023-03-05 22:36:22 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:36:22 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:36:22 -Root WebApplicationContext: initialization completed in 1337 ms
+2023-03-05 22:36:25 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:36:25 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:36:25 -Started ServiceApplication in 4.68 seconds (JVM running for 6.64)
+2023-03-05 22:37:22 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:37:22 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:37:22 -Completed initialization in 0 ms
+2023-03-05 22:37:53 -HikariPool-1 - Starting...
+2023-03-05 22:37:54 -HikariPool-1 - Start completed.
+2023-03-05 22:38:11 -HikariPool-1 - Shutdown initiated...
+2023-03-05 22:38:11 -HikariPool-1 - Shutdown completed.
+2023-03-05 22:38:18 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:38:18 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 28432 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:38:18 -The following profiles are active: dev
+2023-03-05 22:38:19 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:38:19 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:38:19 -Starting service [Tomcat]
+2023-03-05 22:38:19 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:38:19 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:38:19 -Root WebApplicationContext: initialization completed in 1411 ms
+2023-03-05 22:38:22 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:38:22 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:38:22 -Started ServiceApplication in 4.786 seconds (JVM running for 6.617)
+2023-03-05 22:40:30 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:40:30 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:40:30 -Completed initialization in 0 ms
+2023-03-05 22:40:47 -HikariPool-1 - Starting...
+2023-03-05 22:40:48 -HikariPool-1 - Start completed.
+2023-03-05 22:46:20 -HikariPool-1 - Shutdown initiated...
+2023-03-05 22:46:21 -HikariPool-1 - Shutdown completed.
+2023-03-05 22:46:25 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 38008 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:46:25 -The following profiles are active: dev
+2023-03-05 22:46:25 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:46:26 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:46:26 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:46:26 -Starting service [Tomcat]
+2023-03-05 22:46:26 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:46:26 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:46:26 -Root WebApplicationContext: initialization completed in 1337 ms
+2023-03-05 22:46:29 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:46:29 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:46:29 -Started ServiceApplication in 4.587 seconds (JVM running for 6.416)
+2023-03-05 22:46:31 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:46:31 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:46:31 -Completed initialization in 0 ms
+2023-03-05 22:47:02 -HikariPool-1 - Starting...
+2023-03-05 22:47:03 -HikariPool-1 - Start completed.
+2023-03-05 22:47:03 -HikariPool-1 - Shutdown initiated...
+2023-03-05 22:47:03 -HikariPool-1 - Shutdown completed.
+2023-03-05 22:47:06 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:47:06 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 44932 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:47:06 -The following profiles are active: dev
+2023-03-05 22:47:08 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:47:08 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:47:08 -Starting service [Tomcat]
+2023-03-05 22:47:08 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:47:08 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:47:08 -Root WebApplicationContext: initialization completed in 1291 ms
+2023-03-05 22:47:10 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:47:10 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:47:10 -Started ServiceApplication in 4.466 seconds (JVM running for 6.323)
+2023-03-05 22:47:24 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:47:24 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:47:24 -Completed initialization in 0 ms
+2023-03-05 22:47:41 -HikariPool-1 - Starting...
+2023-03-05 22:47:42 -HikariPool-1 - Start completed.
+2023-03-05 22:52:38 -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m24s535ms342µs300ns).
+2023-03-05 22:52:43 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@282dcc09 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 22:52:48 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5f91ccbf (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 22:52:53 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1ae0a328 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 22:52:58 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@722ea6d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 22:53:03 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@54684335 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 22:53:08 -HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2be0ab81 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2023-03-05 22:53:08 -Failure in @ExceptionHandler com.cj.im.service.exception.GlobalExceptionHandler#unknowException(Exception)
+java.lang.NullPointerException: null
+	at org.springframework.web.util.UrlPathHelper.getSanitizedPath(UrlPathHelper.java:408)
+	at org.springframework.web.util.UrlPathHelper.decodeAndCleanUriString(UrlPathHelper.java:551)
+	at org.springframework.web.util.UrlPathHelper.getOriginatingRequestUri(UrlPathHelper.java:496)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.addContentDispositionHeader(AbstractMessageConverterMethodProcessor.java:431)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:288)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.handleReturnValue(RequestResponseBodyMethodProcessor.java:183)
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:135)
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:428)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:75)
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:142)
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1327)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1138)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1732)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2023-03-05 22:53:09 -HikariPool-1 - Shutdown initiated...
+2023-03-05 22:53:09 -HikariPool-1 - Shutdown completed.
+2023-03-05 22:53:15 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 36676 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:53:15 -The following profiles are active: dev
+2023-03-05 22:53:15 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:53:16 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:53:16 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:53:16 -Starting service [Tomcat]
+2023-03-05 22:53:16 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:53:16 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:53:16 -Root WebApplicationContext: initialization completed in 1393 ms
+2023-03-05 22:53:19 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:53:19 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:53:19 -Started ServiceApplication in 4.676 seconds (JVM running for 6.493)
+2023-03-05 22:53:21 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:53:21 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:53:21 -Completed initialization in 0 ms
+2023-03-05 22:54:04 -HikariPool-1 - Starting...
+2023-03-05 22:54:04 -HikariPool-1 - Start completed.
+2023-03-05 22:54:05 -HikariPool-1 - Shutdown initiated...
+2023-03-05 22:54:05 -HikariPool-1 - Shutdown completed.
+2023-03-05 22:54:08 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:54:08 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 31644 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:54:08 -The following profiles are active: dev
+2023-03-05 22:54:09 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:54:09 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:54:09 -Starting service [Tomcat]
+2023-03-05 22:54:09 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:54:10 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:54:10 -Root WebApplicationContext: initialization completed in 1296 ms
+2023-03-05 22:54:12 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:54:12 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:54:12 -Started ServiceApplication in 4.367 seconds (JVM running for 6.251)
+2023-03-05 22:54:25 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:54:25 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:54:25 -Completed initialization in 1 ms
+2023-03-05 22:54:29 -HikariPool-1 - Starting...
+2023-03-05 22:54:30 -HikariPool-1 - Start completed.
+2023-03-05 22:55:11 -HikariPool-1 - Shutdown initiated...
+2023-03-05 22:55:11 -HikariPool-1 - Shutdown completed.
+2023-03-05 22:55:17 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 44556 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:55:17 -The following profiles are active: dev
+2023-03-05 22:55:17 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:55:18 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:55:18 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:55:18 -Starting service [Tomcat]
+2023-03-05 22:55:18 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:55:18 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:55:18 -Root WebApplicationContext: initialization completed in 1222 ms
+2023-03-05 22:55:21 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:55:21 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:55:21 -Started ServiceApplication in 4.211 seconds (JVM running for 6.022)
+2023-03-05 22:55:29 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:55:29 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:55:29 -Completed initialization in 0 ms
+2023-03-05 22:56:43 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 18264 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:56:43 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:56:43 -The following profiles are active: dev
+2023-03-05 22:56:44 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:56:44 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:56:44 -Starting service [Tomcat]
+2023-03-05 22:56:44 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:56:44 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:56:44 -Root WebApplicationContext: initialization completed in 1421 ms
+2023-03-05 22:56:47 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:56:47 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:56:47 -Started ServiceApplication in 4.695 seconds (JVM running for 6.6)
+2023-03-05 22:57:06 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:57:06 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:57:06 -Completed initialization in 1 ms
+2023-03-05 22:58:16 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 32312 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:58:16 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:58:16 -The following profiles are active: dev
+2023-03-05 22:58:17 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:58:17 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:58:17 -Starting service [Tomcat]
+2023-03-05 22:58:17 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:58:17 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:58:17 -Root WebApplicationContext: initialization completed in 1313 ms
+2023-03-05 22:58:20 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:58:20 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:58:20 -Started ServiceApplication in 4.499 seconds (JVM running for 6.311)
+2023-03-05 22:58:22 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:58:22 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:58:22 -Completed initialization in 1 ms
+2023-03-05 22:59:33 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 22:59:33 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 33908 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 22:59:33 -The following profiles are active: dev
+2023-03-05 22:59:35 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 22:59:35 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:59:35 -Starting service [Tomcat]
+2023-03-05 22:59:35 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 22:59:35 -Initializing Spring embedded WebApplicationContext
+2023-03-05 22:59:35 -Root WebApplicationContext: initialization completed in 1287 ms
+2023-03-05 22:59:37 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 22:59:37 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 22:59:37 -Started ServiceApplication in 4.373 seconds (JVM running for 6.156)
+2023-03-05 22:59:51 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 22:59:51 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 22:59:51 -Completed initialization in 1 ms
+2023-03-05 23:02:22 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 23:02:22 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 29724 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 23:02:22 -The following profiles are active: dev
+2023-03-05 23:02:23 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 23:02:23 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:02:23 -Starting service [Tomcat]
+2023-03-05 23:02:23 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 23:02:23 -Initializing Spring embedded WebApplicationContext
+2023-03-05 23:02:23 -Root WebApplicationContext: initialization completed in 1419 ms
+2023-03-05 23:02:26 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:02:26 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 23:02:26 -Started ServiceApplication in 4.74 seconds (JVM running for 6.601)
+2023-03-05 23:02:32 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 23:02:32 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 23:02:32 -Completed initialization in 1 ms
+2023-03-05 23:03:58 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 23:03:58 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 10892 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 23:03:58 -The following profiles are active: dev
+2023-03-05 23:04:00 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 23:04:00 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:04:00 -Starting service [Tomcat]
+2023-03-05 23:04:00 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 23:04:00 -Initializing Spring embedded WebApplicationContext
+2023-03-05 23:04:00 -Root WebApplicationContext: initialization completed in 1293 ms
+2023-03-05 23:04:02 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:04:02 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 23:04:02 -Started ServiceApplication in 4.436 seconds (JVM running for 6.303)
+2023-03-05 23:04:07 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 23:04:07 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 23:04:07 -Completed initialization in 1 ms
+2023-03-05 23:04:13 -HikariPool-1 - Starting...
+2023-03-05 23:04:14 -HikariPool-1 - Start completed.
+2023-03-05 23:05:18 -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m3s679ms435µs400ns).
+2023-03-05 23:07:12 -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m22s117ms567µs600ns).
+2023-03-05 23:08:14 -HikariPool-1 - Shutdown initiated...
+2023-03-05 23:08:14 -HikariPool-1 - Shutdown completed.
+2023-03-05 23:08:21 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 23:08:21 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 43712 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 23:08:21 -The following profiles are active: dev
+2023-03-05 23:08:22 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 23:08:22 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:08:22 -Starting service [Tomcat]
+2023-03-05 23:08:22 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 23:08:22 -Initializing Spring embedded WebApplicationContext
+2023-03-05 23:08:22 -Root WebApplicationContext: initialization completed in 1362 ms
+2023-03-05 23:08:25 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:08:25 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 23:08:25 -Started ServiceApplication in 4.694 seconds (JVM running for 6.595)
+2023-03-05 23:08:28 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 23:08:28 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 23:08:28 -Completed initialization in 1 ms
+2023-03-05 23:08:33 -HikariPool-1 - Starting...
+2023-03-05 23:08:34 -HikariPool-1 - Start completed.
+2023-03-05 23:18:48 -HikariPool-1 - Shutdown initiated...
+2023-03-05 23:18:48 -HikariPool-1 - Shutdown completed.
+2023-03-05 23:18:52 -Starting ServiceApplication using Java 1.8.0_131 on LAPTOP-4V8OH1HM with PID 44640 (D:\study\java\workspace\im-system\service\target\classes started by 10105 in D:\study\java\workspace\im-system)
+2023-03-05 23:18:52 -HV000001: Hibernate Validator 6.2.0.Final
+2023-03-05 23:18:52 -The following profiles are active: dev
+2023-03-05 23:18:53 -Tomcat initialized with port(s): 8000 (http)
+2023-03-05 23:18:53 -Initializing ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:18:53 -Starting service [Tomcat]
+2023-03-05 23:18:53 -Starting Servlet engine: [Apache Tomcat/9.0.56]
+2023-03-05 23:18:53 -Initializing Spring embedded WebApplicationContext
+2023-03-05 23:18:53 -Root WebApplicationContext: initialization completed in 1340 ms
+2023-03-05 23:18:56 -Starting ProtocolHandler ["http-nio-8000"]
+2023-03-05 23:18:56 -Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-05 23:18:56 -Started ServiceApplication in 4.503 seconds (JVM running for 6.39)
+2023-03-05 23:19:02 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-05 23:19:02 -Initializing Servlet 'dispatcherServlet'
+2023-03-05 23:19:02 -Completed initialization in 0 ms
+2023-03-05 23:19:03 -HikariPool-1 - Starting...
+2023-03-05 23:19:03 -HikariPool-1 - Start completed.
