@@ -25,12 +25,13 @@ spring:
   application:
     name: im-core
 appConfig:
+  privateKey: 123456
   zkAddr: 127.0.0.1:2181
   zkConnectTimeOut: 500
   imRouteWay: 3 # 路由策略1轮训 2随机 3hash
   consistentHashWay: 1 # 如果选用一致性hash的话具体hash算法 1 TreeMap 2 自定义Map
   callbackUrl: http://127.0.0.1:8081/callback
-  modifyUserAfterCallback: true # 用户资料变更之后回调开关
+  modifyUserAfterCallback: true # 用户资料变更之后回调开关 TODO 后期更新为存入数据库表
   addFriendAfterCallback: false # 添加好友之后回调开关
   addFriendBeforeCallback: false # 添加好友之前回调开关
   modifyFriendAfterCallback: false # 修改好友之后回调开关

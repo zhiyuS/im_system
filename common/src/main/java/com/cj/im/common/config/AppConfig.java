@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "appconfig")
 public class AppConfig {
+    private String privateKey;
     private String zkAddr;
     private Integer zkConnectTimeOut;
     private Integer imRouteWay;
