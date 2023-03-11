@@ -1,7 +1,16 @@
-package com.cj.im.tcp.register;
+package com.cj.im.service.utils;
 import com.cj.im.common.constant.Constants;
 import org.I0Itec.zkclient.ZkClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Component
 public class ZKit {
+
+    @Autowired
     private ZkClient zkClient;
 
     public ZKit(ZkClient zkClient) {
@@ -11,26 +20,11 @@ public class ZKit {
      * 创建节点
      * im-coreRoot/tcp/ip:port
      */
-    public void createRootNode(){
-        boolean exists = zkClient.exists(Constants.ImCoreZkRoot);
-        if(!exists){
-            zkClient.createPersistent(Constants.ImCoreZkRoot);
-        }
-        boolean existsTcp = zkClient.exists(Constants.ImCoreZkRoot+Constants.ImCoreZkRootTcp);
-        if(!existsTcp){
-            zkClient.createPersistent(Constants.ImCoreZkRoot + Constants.ImCoreZkRootTcp);
-        }
-        boolean existsWeb = zkClient.exists(Constants.ImCoreZkRoot +Constants.ImCoreZkRootWeb);
-        if(!existsTcp){
-            zkClient.createPersistent(Constants.ImCoreZkRoot +Constants.ImCoreZkRootWeb);
-        }
-
-
+    public List<String> getAllTcpNode(){
+        return zkClient.getChildren(Constants.ImCoreZkRoot+Constants.ImCoreZkRootTcp);
     }
     //ip+port 生成节点
-    public void createNode(String path){
-        if(!zkClient.exists(path)){
-            zkClient.createPersistent(path);
-        }
+    public List<String> getAllWebNode(){
+        return zkClient.getChildren(Constants.ImCoreZkRoot+Constants.ImCoreZkRootWeb);
     }
 }

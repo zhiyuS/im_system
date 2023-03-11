@@ -1,2 +1,12 @@
-package com.cj.im.service.friendship.model.req;public class DeleteAllFriendReq {
+package com.cj.im.service.friendship.model.req;
+
+import com.cj.im.common.model.RequestBase;
+import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
+
+@Data
+public class DeleteAllFriendReq extends RequestBase {
+    @NotBlank(message = "fromId 不能为空")
+    private String fromId;
 }

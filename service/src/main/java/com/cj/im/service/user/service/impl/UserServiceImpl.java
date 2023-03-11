@@ -1,7 +1,12 @@
 package com.cj.im.service.user.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.cj.codec.pack.user.UserModifyPack;
 import com.cj.im.common.ResponseVO;
+import com.cj.im.common.config.AppConfig;
+import com.cj.im.common.constant.Constants;
 import com.cj.im.common.enums.DelFlagEnum;
 import com.cj.im.common.enums.UserErrorCode;
 import com.cj.im.common.enums.command.UserEventCommand;
@@ -12,6 +17,8 @@ import com.cj.im.service.user.model.req.*;
 import com.cj.im.service.user.model.resp.GetUserInfoResp;
 import com.cj.im.service.user.model.resp.ImportUserResp;
 import com.cj.im.service.user.service.UserService;
+import com.cj.im.service.utils.CallBackService;
+import com.cj.im.service.utils.MessageProduce;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +34,21 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private ImUserDataMapper userDataMapper;
+
+    @Autowired
+    private AppConfig appConfig;
+
+    @Autowired
+    private CallBackService callBackService;
+
+    @Autowired
+    private MessageProduce messageProducer;
+
+    /**
+     * 导入用户
+     * @param req
+     * @return
+     */
     @Override
     public ResponseVO importUser(ImportUserReq req) {
 
@@ -54,6 +76,11 @@ public class UserServiceImpl implements UserService {
         return ResponseVO.successResponse(importUserResp);
     }
 
+    /**
+     * 获取用户信息
+     * @param req
+     * @return
+     */
     @Override
     public ResponseVO<GetUserInfoResp> getUserInfo(GetUserInfoReq req) {
         QueryWrapper<ImUserDataEntity> queryWrapper = new QueryWrapper<>();
@@ -85,9 +112,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO<ImUserDataEntity> getSingleUserInfo(String userId, Integer appId) {
-        return null;
+        QueryWrapper<ImUserDataEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId);
+        queryWrapper.eq("app_id",appId);
+
+        ImUserDataEntity imUserDataEntity = userDataMapper.selectOne(queryWrapper);
+        if(ObjectUtil.isNull(imUserDataEntity)){
+            return ResponseVO.errorResponse();
+        }
+        return ResponseVO.successResponse(imUserDataEntity);
     }
 
+    /**
+     * 删除用户
+     * @param req
+     * @return
+     */
     @Override
     public ResponseVO deleteUser(DeleteUserReq req) {
         ImUserDataEntity entity = new ImUserDataEntity();
@@ -122,6 +162,11 @@ public class UserServiceImpl implements UserService {
         return ResponseVO.successResponse(resp);
     }
 
+    /**
+     * 修改用户
+     * @param req
+     * @return
+     */
     @Override
     @Transactional
     public ResponseVO modifyUserInfo(ModifyUserInfoReq req) {
@@ -140,17 +185,38 @@ public class UserServiceImpl implements UserService {
         update.setAppId(null);
         update.setUserId(null);
         int update1 = userDataMapper.update(update, query);
+
+        //修改成功
         if(update1 == 1){
+
+            UserModifyPack pack = new UserModifyPack();
+            BeanUtils.copyProperties(req,pack);
+            messageProducer.sendToUser(req.getUserId(),req.getClientType(),req.getImei(),
+                    UserEventCommand.USER_MODIFY,pack,req.getAppId());
+
+            if(appConfig.isModifyUserAfterCallback()){
+                callBackService.callback(req.getAppId(), Constants.CallbackCommand.ModifyUserAfter, JSON.toJSONString(req));
+            }
             return ResponseVO.successResponse();
         }
         throw new ApplicationException(UserErrorCode.MODIFY_USER_ERROR);
     }
 
+    /**
+     * 登录
+     * @param req
+     * @return
+     */
     @Override
     public ResponseVO login(LoginReq req) {
-        return null;
+        return ResponseVO.successResponse();
     }
 
+    /**
+     * 获取用户Sequence
+     * @param req
+     * @return
+     */
     @Override
     public ResponseVO getUserSequence(GetUserSequenceReq req) {
         return null;

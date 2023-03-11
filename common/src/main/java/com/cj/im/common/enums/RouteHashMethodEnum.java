@@ -5,13 +5,13 @@ public enum RouteHashMethodEnum {
     /**
      * TreeMap
      */
-    TREE(1,"com.lld.im.common.route.algorithm.consistenthash" +
+    TREE(1,"com.cj.im.common.route.algorithm.consistenthash" +
             ".TreeMapConsistentHash"),
 
     /**
      * 自定义map
      */
-    CUSTOMER(2,"com.lld.im.common.route.algorithm.consistenthash.xxxx"),
+    CUSTOMER(2,"com.cj.im.common.route.algorithm.consistenthash.xxxx"),
 
     ;
 

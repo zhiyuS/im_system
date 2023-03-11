@@ -57,7 +57,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
             userSession.setImei(msg.getMessageHeader().getImei());
 
             //设置在线状态
-            userSession.setConnectStatus(ImConnectStatusEnum.ONLINE_STATUS.getCode());
+            userSession.setConnectState(ImConnectStatusEnum.ONLINE_STATUS.getCode());
             userSession.setVersion(msg.getMessageHeader().getVersion());
 
             // 添加brokerId,brokerHost

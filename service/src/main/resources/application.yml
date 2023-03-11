@@ -1,6 +1,22 @@
 spring:
   profiles:
     active: dev
+  redis:
+    host: 42.193.140.45
+    port: 6378
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 100
+        max-wait: 1000
+        min-idle: 10
+    password:
+  rabbitmq:
+    host: 42.193.140.45
+    port: 5672
+    addresses: 42.193.140.45
+    username: guest
+    password: guest
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -8,11 +24,45 @@ spring:
     url: jdbc:mysql://42.193.140.45:3307/im_system?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
   application:
     name: im-core
+appConfig:
+  zkAddr: 127.0.0.1:2181
+  zkConnectTimeOut: 500
+  imRouteWay: 3 # 路由策略1轮训 2随机 3hash
+  consistentHashWay: 1 # 如果选用一致性hash的话具体hash算法 1 TreeMap 2 自定义Map
+  callbackUrl: http://127.0.0.1:8081/callback
+  modifyUserAfterCallback: true # 用户资料变更之后回调开关
+  addFriendAfterCallback: false # 添加好友之后回调开关
+  addFriendBeforeCallback: false # 添加好友之前回调开关
+  modifyFriendAfterCallback: false # 修改好友之后回调开关
+  deleteFriendAfterCallback: false # 删除好友之后回调开关
+  addFriendShipBlackAfterCallback: false #添加黑名单之后回调开关
+  deleteFriendShipBlackAfterCallback: false #删除黑名单之后回调开关
+  createGroupAfterCallback: false # 创建群聊之后回调开关
+  modifyGroupAfterCallback: false # 修改群聊之后回调开关
+  destroyGroupAfterCallback: false # 解散群聊之后回调开关
+  deleteGroupMemberAfterCallback: false # 删除群成员之后回调
+  addGroupMemberAfterCallback: false # 拉人入群之后回调
+  addGroupMemberBeforeCallback: false # 拉人入群之前回调
+  sendMessageAfterCallback: false # 发送单聊消息之后
+  sendMessageBeforeCallback: false # 发送单聊消息之前
+  sendGroupMessageAfterCallback: false # 发送群聊消息之后
+  sendGroupMessageBeforeCallback: false # 发送群聊消息之前
+  offlineMessageCount: 1000 #离线消息存储条数
+  deleteConversationSyncMode: 1 #1多段同步
 # logger 配置
 logging:
   config: classpath:logback-spring.xml
 server:
   port: 8000
+#http配置
+httpclient:
+  maxTotal: 100
+  defaultMaxPerRoute: 50
+  connectTimeout: 2000
+  connectionRequestTimeout: 2000
+  socketTimeout: 5000
+  staleConnectionCheckEnabled: true
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

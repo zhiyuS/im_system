@@ -14,8 +14,6 @@ import lombok.Data;
 @TableName("im_user_data")
 public class ImUserDataEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
     // 用户id
     private String userId;
 

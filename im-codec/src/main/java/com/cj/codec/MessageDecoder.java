@@ -44,7 +44,7 @@ public class MessageDecoder extends ByteToMessageDecoder {
         messageHeader.setMessageType(messageType);
         messageHeader.setImeiLength(imeiLength);
         messageHeader.setImei(imei);
-        messageHeader.setBodyLen(bodyLen);
+        messageHeader.setLength(bodyLen);
 
         Message message = new Message();
         message.setMessageHeader(messageHeader);

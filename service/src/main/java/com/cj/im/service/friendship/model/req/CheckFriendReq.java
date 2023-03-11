@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
-public class CheckFriend extends RequestBase {
+public class CheckFriendReq extends RequestBase {
     @NotBlank(message = "fromId不能为空")
     private String fromId;
 
@@ -19,5 +19,4 @@ public class CheckFriend extends RequestBase {
     @NotNull(message = "checkType不能为空")
     private Integer checkType;
 
-    private Integer status;
 }

@@ -24,7 +24,7 @@ public class MessageHeader {
     private Integer imeiLength;
 
     //4字节 包体长度
-    private int bodyLen;
+    private int length;
 
     //imei号
     private String imei;

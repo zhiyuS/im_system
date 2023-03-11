@@ -2,34 +2,36 @@ package com.cj.im.common.model;
 
 import lombok.Data;
 
+/**
+ * @description:
+ * @author: lld
+ * @version: 1.0
+ */
 @Data
 public class UserSession {
+
     private String userId;
-    private Integer appId;
-    /**
-     * 端的表示
-     */
-    private Integer clientType;
-    /**
-     * 版本
-     */
-    private Integer version;
 
     /**
-     * 连接状态 1：上线 2：离线
+     * 应用ID
      */
-    private Integer connectStatus;
+    private Integer appId;
+
     /**
-     * brokerId
+     * 端的标识
      */
+    private Integer clientType;
+
+    //sdk 版本号
+    private Integer version;
+
+    //连接状态 1=在线 2=离线
+    private Integer connectState;
+
     private Integer brokerId;
-    /**
-     * brokerHost
-     */
+
     private String brokerHost;
-    /**
-     * imei
-     */
+
     private String imei;
 
 }

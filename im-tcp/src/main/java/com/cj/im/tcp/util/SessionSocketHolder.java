@@ -25,6 +25,7 @@ public class SessionSocketHolder {
 
     public static void put(String userId,Integer appId,Integer clientType,String imei,NioSocketChannel channel){
         UserClientDto userClientDto = new UserClientDto();
+
         userClientDto.setAppId(appId);
         userClientDto.setUserId(userId);
         userClientDto.setClientType(clientType);
@@ -33,12 +34,14 @@ public class SessionSocketHolder {
         CHANNEL_MAP.put(userClientDto,channel);
     }
     public static NioSocketChannel get(String userId,Integer appId,Integer clientType,String imei){
-        UserClientDto userClientDto = new UserClientDto();
-        userClientDto.setUserId(userId);
-        userClientDto.setAppId(appId);
-        userClientDto.setClientType(clientType);
-        userClientDto.setImei(imei);
-        return CHANNEL_MAP.get(userClientDto);
+        UserClientDto dto = new UserClientDto();
+
+        dto.setUserId(userId);
+        dto.setAppId(appId);
+        dto.setClientType(clientType);
+        dto.setImei(imei);
+
+        return CHANNEL_MAP.get(dto);
     }
 
     /**
@@ -92,7 +95,7 @@ public class SessionSocketHolder {
         RMap<String, String> map = redissonClient.getMap(appId + Constants.RedisConstants.UserSessionConstants + userId);
         if(StrUtil.isNotBlank(map.get(clientType))){
             UserSession userSession = JSON.parseObject(map.get(clientType), UserSession.class);
-            userSession.setConnectStatus(ImConnectStatusEnum.OFFLINE_STATUS.getCode());
+            userSession.setConnectState(ImConnectStatusEnum.OFFLINE_STATUS.getCode());
             map.put(clientType+":"+imei,JSON.toJSONString(userSession));
         }
 

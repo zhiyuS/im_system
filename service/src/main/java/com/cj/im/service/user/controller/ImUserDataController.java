@@ -15,15 +15,18 @@ public class ImUserDataController {
     private UserService userService;
 
     @PostMapping("getUserInfo")
-    public ResponseVO getUserInfo(@RequestBody GetUserInfoReq userInfoReq){
+    public ResponseVO getUserInfo(@RequestBody GetUserInfoReq userInfoReq,Integer appId){
+        userInfoReq.setAppId(appId);
         return userService.getUserInfo(userInfoReq);
     }
     @PostMapping("deleteUser")
-    public ResponseVO deleteUser(@RequestBody DeleteUserReq userReq){
+    public ResponseVO deleteUser(@RequestBody DeleteUserReq userReq,Integer appId){
+        userReq.setAppId(appId);
         return userService.deleteUser(userReq);
     }
     @PostMapping("update")
-    public ResponseVO updateUser(@RequestBody ModifyUserInfoReq userInfoReq){
+    public ResponseVO updateUser(@RequestBody ModifyUserInfoReq userInfoReq,Integer appId){
+        userInfoReq.setAppId(appId);
         return userService.modifyUserInfo(userInfoReq);
     }
 }
