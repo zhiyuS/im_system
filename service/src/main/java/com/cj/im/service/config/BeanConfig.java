@@ -9,6 +9,7 @@ import com.cj.im.common.route.algorithm.consistenthash.ConsistentHashHandle;
 import com.cj.im.common.route.algorithm.consistenthash.TreeMapConsistentHash;
 import com.cj.im.common.route.algorithm.loop.LoopHandler;
 import com.cj.im.common.route.algorithm.random.RandomHandler;
+import com.cj.im.service.utils.SnowflakeIdWorker;
 import org.I0Itec.zkclient.ZkClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -62,6 +63,16 @@ public class BeanConfig {
     public ZkClient buildZkClient(){
 
         return new ZkClient(appConfig.getZkAddr(),appConfig.getZkConnectTimeOut());
+    }
+
+    @Bean
+    public EasySqlInjector easySqlInjector () {
+        return new EasySqlInjector();
+    }
+
+    @Bean
+    public SnowflakeIdWorker buildSnowflakeSeq() throws Exception {
+        return new SnowflakeIdWorker(0);
     }
 
 }

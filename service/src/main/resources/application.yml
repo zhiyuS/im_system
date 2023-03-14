@@ -31,7 +31,8 @@ appConfig:
   imRouteWay: 3 # 路由策略1轮训 2随机 3hash
   consistentHashWay: 1 # 如果选用一致性hash的话具体hash算法 1 TreeMap 2 自定义Map
   callbackUrl: http://127.0.0.1:8081/callback
-  modifyUserAfterCallback: true # 用户资料变更之后回调开关 TODO 后期更新为存入数据库表
+  sendMessageCheckFriend: true  #是否验证好友关系
+  modifyUserAfterCallback: false # 用户资料变更之后回调开关 TODO 后期更新为存入数据库表
   addFriendAfterCallback: false # 添加好友之后回调开关
   addFriendBeforeCallback: false # 添加好友之前回调开关
   modifyFriendAfterCallback: false # 修改好友之后回调开关
@@ -50,6 +51,7 @@ appConfig:
   sendGroupMessageBeforeCallback: false # 发送群聊消息之前
   offlineMessageCount: 1000 #离线消息存储条数
   deleteConversationSyncMode: 1 #1多段同步
+  getOfflineMessageCount: 1000 #离线消息拉取最大条数
 # logger 配置
 logging:
   config: classpath:logback-spring.xml

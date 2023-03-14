@@ -48,7 +48,7 @@ public class LimWebSocketServer {
                     pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
                     pipeline.addLast(new WebSocketMessageDecoder());
                     pipeline.addLast(new WebSocketMessageEncoder());
-                    pipeline.addLast(new NettyServerHandler(config.getBrokerId()));
+                    pipeline.addLast(new NettyServerHandler(config.getBrokerId(),config.getLogicUrl()));
                     }
                 })
                 .option(ChannelOption.SO_BACKLOG, 128)          // (5)

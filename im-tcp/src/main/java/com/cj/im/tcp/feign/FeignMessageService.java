@@ -1,7 +1,8 @@
-package com.lld.im.tcp.feign;
+package com.cj.im.tcp.feign;
 
-import com.lld.im.common.ResponseVO;
-import com.lld.im.common.model.message.CheckSendMessageReq;
+
+import com.cj.im.common.ResponseVO;
+import com.cj.im.common.model.message.CheckSendMessageReq;
 import feign.Headers;
 import feign.RequestLine;
 

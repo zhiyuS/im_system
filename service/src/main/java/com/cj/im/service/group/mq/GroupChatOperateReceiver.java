@@ -1,16 +1,14 @@
-package com.lld.im.service.group.mq;
+package com.cj.im.service.group.mq;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.lld.im.common.constant.Constants;
-import com.lld.im.common.enums.command.GroupEventCommand;
-import com.lld.im.common.enums.command.MessageCommand;
-import com.lld.im.common.model.message.GroupChatMessageContent;
-import com.lld.im.common.model.message.MessageReadedContent;
-import com.lld.im.service.group.service.GroupMessageService;
-import com.lld.im.service.message.service.MessageSyncService;
-import com.lld.im.service.message.service.P2PMessageService;
+
+import com.cj.im.common.constant.Constants;
+import com.cj.im.common.enums.command.GroupEventCommand;
+import com.cj.im.common.model.message.GroupChatMessageContent;
+import com.cj.im.common.model.message.MessageReadedContent;
+import com.cj.im.service.group.service.GroupMessageService;
+import com.cj.im.service.message.service.MessageSyncService;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +38,7 @@ public class GroupChatOperateReceiver {
 //    @Autowired
 //    P2PMessageService p2PMessageService;
     @Autowired
-    GroupMessageService groupMessageService;
+GroupMessageService groupMessageService;
 
     @Autowired
     MessageSyncService messageSyncService;
@@ -67,9 +65,9 @@ public class GroupChatOperateReceiver {
 //                p2PMessageService.process(messageContent);
                 groupMessageService.process(messageContent);
             }else if (command.equals(GroupEventCommand.MSG_GROUP_READED.getCommand())) {
-                MessageReadedContent messageReaded = JSON.parseObject(msg, new TypeReference<MessageReadedContent>() {
-                }.getType());
-                messageSyncService.groupReadMark(messageReaded);
+//                MessageReadedContent messageReaded = JSON.parseObject(msg, new TypeReference<MessageReadedContent>() {
+//                }.getType());
+//                messageSyncService.groupReadMark(messageReaded);
             }
             channel.basicAck(deliveryTag, false);
         }catch (Exception e){

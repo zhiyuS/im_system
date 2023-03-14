@@ -1,18 +1,19 @@
-package com.lld.im.service.message.service;
+package com.cj.im.service.message.service;
 
-import com.lld.im.common.ResponseVO;
-import com.lld.im.common.config.AppConfig;
-import com.lld.im.common.enums.*;
-import com.lld.im.service.friendship.dao.ImFriendShipEntity;
-import com.lld.im.service.friendship.model.req.GetRelationReq;
-import com.lld.im.service.friendship.service.ImFriendService;
-import com.lld.im.service.group.dao.ImGroupEntity;
-import com.lld.im.service.group.model.resp.GetRoleInGroupResp;
-import com.lld.im.service.group.service.ImGroupMemberService;
-import com.lld.im.service.group.service.ImGroupService;
-import com.lld.im.service.user.dao.ImUserDataEntity;
-import com.lld.im.service.user.service.ImUserService;
-import com.sun.org.apache.regexp.internal.RE;
+
+import com.cj.im.common.ResponseVO;
+import com.cj.im.common.config.AppConfig;
+import com.cj.im.common.enums.*;
+import com.cj.im.service.friendship.dao.ImFriendShipEntity;
+import com.cj.im.service.friendship.model.req.GetFriendReq;
+import com.cj.im.service.friendship.model.req.GetRelationReq;
+import com.cj.im.service.friendship.service.ImFriendShipService;
+import com.cj.im.service.group.dao.ImGroupEntity;
+import com.cj.im.service.group.model.resp.GetRoleInGroupResp;
+import com.cj.im.service.group.service.ImGroupMemberService;
+import com.cj.im.service.group.service.ImGroupService;
+import com.cj.im.service.user.dao.ImUserDataEntity;
+import com.cj.im.service.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +26,10 @@ import org.springframework.stereotype.Service;
 public class CheckSendMessageService {
 
     @Autowired
-    ImUserService imUserService;
+    UserService imUserService;
 
     @Autowired
-    ImFriendService imFriendService;
+    ImFriendShipService imFriendService;
 
     @Autowired
     ImGroupService imGroupService;
@@ -40,7 +41,13 @@ public class CheckSendMessageService {
     AppConfig appConfig;
 
 
-    public ResponseVO checkSenderForvidAndMute(String fromId,Integer appId){
+    /**
+     * 前置效验好友
+     * @param fromId
+     * @param appId
+     * @return
+     */
+    public ResponseVO checkSenderForvidAndMute(String fromId, Integer appId){
 
         ResponseVO<ImUserDataEntity> singleUserInfo
                 = imUserService.getSingleUserInfo(fromId, appId);
@@ -49,9 +56,12 @@ public class CheckSendMessageService {
         }
 
         ImUserDataEntity user = singleUserInfo.getData();
+        //是否被禁用
         if(user.getForbiddenFlag() == UserForbiddenFlagEnum.FORBIBBEN.getCode()){
             return ResponseVO.errorResponse(MessageErrorCode.FROMER_IS_FORBIBBEN);
-        }else if (user.getSilentFlag() == UserSilentFlagEnum.MUTE.getCode()){
+        }
+        //是否被禁言
+        if(user.getSilentFlag() == UserSilentFlagEnum.MUTE.getCode()){
             return ResponseVO.errorResponse(MessageErrorCode.FROMER_IS_MUTE);
         }
 
@@ -61,39 +71,46 @@ public class CheckSendMessageService {
     public ResponseVO checkFriendShip(String fromId,String toId,Integer appId){
 
         if(appConfig.isSendMessageCheckFriend()){
-            GetRelationReq fromReq = new GetRelationReq();
+            //A-B是否有好友关系
+            GetFriendReq fromReq = new GetFriendReq();
             fromReq.setFromId(fromId);
             fromReq.setToId(toId);
             fromReq.setAppId(appId);
-            ResponseVO<ImFriendShipEntity> fromRelation = imFriendService.getRelation(fromReq);
+            ResponseVO<ImFriendShipEntity> fromRelation = imFriendService.getFriend(fromReq);
             if(!fromRelation.isOk()){
                 return fromRelation;
             }
+            //B-A是否有好友关系
             GetRelationReq toReq = new GetRelationReq();
             fromReq.setFromId(toId);
             fromReq.setToId(fromId);
             fromReq.setAppId(appId);
-            ResponseVO<ImFriendShipEntity> toRelation = imFriendService.getRelation(fromReq);
+            ResponseVO<ImFriendShipEntity> toRelation = imFriendService.getFriend(fromReq);
             if(!toRelation.isOk()){
                 return toRelation;
             }
 
+
+            //A-B是否正常
             if(FriendShipStatusEnum.FRIEND_STATUS_NORMAL.getCode()
             != fromRelation.getData().getStatus()){
                 return ResponseVO.errorResponse(FriendShipErrorCode.FRIEND_IS_DELETED);
             }
-
+            //B-A是否正常
             if(FriendShipStatusEnum.FRIEND_STATUS_NORMAL.getCode()
                     != toRelation.getData().getStatus()){
                 return ResponseVO.errorResponse(FriendShipErrorCode.FRIEND_IS_DELETED);
             }
 
+
+            //是否开启效验
             if(appConfig.isSendMessageCheckBlack()){
+                //A-B是否拉黑
                 if(FriendShipStatusEnum.BLACK_STATUS_NORMAL.getCode()
                         != fromRelation.getData().getBlack()){
                     return ResponseVO.errorResponse(FriendShipErrorCode.FRIEND_IS_BLACK);
                 }
-
+                //B-A是否拉黑
                 if(FriendShipStatusEnum.BLACK_STATUS_NORMAL.getCode()
                         != toRelation.getData().getBlack()){
                     return ResponseVO.errorResponse(FriendShipErrorCode.TARGET_IS_BLACK_YOU);

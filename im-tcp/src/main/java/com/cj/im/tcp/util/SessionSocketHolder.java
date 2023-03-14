@@ -93,8 +93,8 @@ public class SessionSocketHolder {
         //设置为离线
         RedissonClient redissonClient = RedisManage.getRedissonClient();
         RMap<String, String> map = redissonClient.getMap(appId + Constants.RedisConstants.UserSessionConstants + userId);
-        if(StrUtil.isNotBlank(map.get(clientType))){
-            UserSession userSession = JSON.parseObject(map.get(clientType), UserSession.class);
+        if(StrUtil.isNotBlank(map.get(clientType+":"+imei))){
+            UserSession userSession = JSON.parseObject(map.get(clientType+":"+imei), UserSession.class);
             userSession.setConnectState(ImConnectStatusEnum.OFFLINE_STATUS.getCode());
             map.put(clientType+":"+imei,JSON.toJSONString(userSession));
         }

@@ -81,5 +81,13 @@ public class ImGroupController {
         req.setOperater(identifier);
         return groupService.muteGroup(req);
     }
+    @RequestMapping("/sendMessage")
+    public ResponseVO sendMessage(@RequestBody @Validated SendGroupMessageReq
+                                          req, Integer appId,
+                                  String identifier)  {
+        req.setAppId(appId);
+        req.setOperater(identifier);
+        return ResponseVO.successResponse(groupMessageService.send(req));
+    }
 
 }

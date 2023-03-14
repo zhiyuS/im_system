@@ -1,4 +1,4 @@
-package com.lld.im.service.conversation.dao;
+package com.cj.im.service.conversation.dao;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;

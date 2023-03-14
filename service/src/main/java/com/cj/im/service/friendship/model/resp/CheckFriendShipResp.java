@@ -3,7 +3,7 @@ package com.cj.im.service.friendship.model.resp;
 import lombok.Data;
 
 @Data
-public class CheckFriendResp {
+public class CheckFriendShipResp {
     private String fromId;
 
     private String toId;

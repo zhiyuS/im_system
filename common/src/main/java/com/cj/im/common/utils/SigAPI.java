@@ -1,7 +1,7 @@
 package com.cj.im.common.utils;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -33,8 +33,9 @@ public class SigAPI {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        SigAPI asd = new SigAPI(10000, "123456");
-        String sign = asd.genUserSig("lld", 100000000);
+        SigAPI asd = new SigAPI(1000, "123456");
+        //设置多久之后过期 单位毫秒
+        String sign = asd.genUserSig("cj", 10000000);
 //        Thread.sleep(2000L);
         JSONObject jsonObject = decodeUserSig(sign);
         System.out.println("sign:" + sign);
@@ -45,7 +46,7 @@ public class SigAPI {
      * @description: 解密方法
      * @param
      * @return com.alibaba.fastjson.JSONObject
-     * @author lld
+     * @author cj
      */
     public static JSONObject decodeUserSig(String userSig) {
         JSONObject sigDoc = new JSONObject(true);
@@ -54,7 +55,7 @@ public class SigAPI {
             byte[] decompressByte = decompress(decodeUrlByte);
             String decodeText = new String(decompressByte, "UTF-8");
 
-            if (StringUtils.isNotBlank(decodeText)) {
+            if (StrUtil.isNotBlank(decodeText)) {
                 sigDoc = JSONObject.parseObject(decodeText);
 
             }

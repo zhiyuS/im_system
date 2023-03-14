@@ -1,4 +1,4 @@
-package com.lld.im.service.seq;
+package com.cj.im.service.seq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

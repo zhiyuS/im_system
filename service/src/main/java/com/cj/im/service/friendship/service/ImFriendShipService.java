@@ -1,6 +1,7 @@
 package com.cj.im.service.friendship.service;
 
 import com.cj.im.common.ResponseVO;
+import com.cj.im.common.model.SyncReq;
 import com.cj.im.service.friendship.model.req.*;
 
 public interface ImFriendShipService {
@@ -24,4 +25,5 @@ public interface ImFriendShipService {
 
     ResponseVO checkFriendBlack(CheckFriendReq req);
 
+    ResponseVO syncFriendshipList(SyncReq req);
 }

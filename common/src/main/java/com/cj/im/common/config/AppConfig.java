@@ -9,12 +9,27 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "appconfig")
 public class AppConfig {
     private String privateKey;
+
+    /** zk连接地址*/
     private String zkAddr;
+
+    /** zk连接超时时间*/
     private Integer zkConnectTimeOut;
+
+    /** im管道地址路由策略*/
     private Integer imRouteWay;
+
+    private boolean sendMessageCheckFriend; //发送消息是否校验关系链
+
+    private boolean sendMessageCheckBlack; //发送消息是否校验黑名单
+
+    /** 如果选用一致性hash的话具体hash算法*/
     private Integer consistentHashWay;
+
     private String callbackUrl;
+
     private boolean modifyUserAfterCallback; //用户资料变更之后回调开关
+
     private boolean addFriendAfterCallback; //添加好友之后回调开关
 
     private boolean addFriendBeforeCallback; //添加好友之前回调开关

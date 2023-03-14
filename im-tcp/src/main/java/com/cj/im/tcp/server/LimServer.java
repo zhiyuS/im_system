@@ -37,9 +37,10 @@ public class LimServer {
                         ch.pipeline().addLast(new MessageDecoder());
                         ch.pipeline().addLast(new MessageEncoder());
 
-                        ch.pipeline().addLast(new NettyServerHandler(config.getBrokerId()));
-//                        ch.pipeline().addLast(new IdleStateHandler(0,0,1));
+                        ch.pipeline().addLast(new IdleStateHandler(0,0,1));
                         ch.pipeline().addLast(new HeartBertServerHandler(config.getHearBertTimeOut()));
+
+                        ch.pipeline().addLast(new NettyServerHandler(config.getBrokerId(),config.getLogicUrl()));
 
                     }
                 })

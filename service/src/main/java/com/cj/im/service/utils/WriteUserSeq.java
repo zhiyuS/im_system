@@ -1,8 +1,9 @@
-package com.lld.im.service.utils;
+package com.cj.im.service.utils;
 
-import com.lld.im.common.constant.Constants;
+import com.cj.im.common.constant.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,11 +19,13 @@ public class WriteUserSeq {
     //    group 12
     //    conversation 123
     @Autowired
-    RedisTemplate redisTemplate;
+    StringRedisTemplate redisTemplate;
 
     public void writeUserSeq(Integer appId,String userId,String type,Long seq){
         String key = appId + ":" + Constants.RedisConstants.SeqPrefix + ":" + userId;
-        redisTemplate.opsForHash().put(key,type,seq);
+//        redisTemplate.opsForHash().put(key,type,seq);
+        redisTemplate.opsForHash().put(key,type,seq.toString());
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.lld.im.service.utils;
+package com.cj.im.service.utils;
 
 
 import cn.hutool.core.date.SystemClock;

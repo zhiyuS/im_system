@@ -1,27 +1,27 @@
-package com.lld.im.service.conversation.service;
+package com.cj.im.service.conversation.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.lld.im.codec.pack.conversation.DeleteConversationPack;
-import com.lld.im.codec.pack.conversation.UpdateConversationPack;
-import com.lld.im.common.ResponseVO;
-import com.lld.im.common.config.AppConfig;
-import com.lld.im.common.constant.Constants;
-import com.lld.im.common.enums.ConversationErrorCode;
-import com.lld.im.common.enums.ConversationTypeEnum;
-import com.lld.im.common.enums.command.ConversationEventCommand;
-import com.lld.im.common.model.ClientInfo;
-import com.lld.im.common.model.SyncReq;
-import com.lld.im.common.model.SyncResp;
-import com.lld.im.common.model.message.MessageReadedContent;
-import com.lld.im.service.conversation.dao.ImConversationSetEntity;
-import com.lld.im.service.conversation.dao.mapper.ImConversationSetMapper;
-import com.lld.im.service.conversation.model.DeleteConversationReq;
-import com.lld.im.service.conversation.model.UpdateConversationReq;
-import com.lld.im.service.friendship.dao.ImFriendShipEntity;
-import com.lld.im.service.seq.RedisSeq;
-import com.lld.im.service.utils.MessageProducer;
-import com.lld.im.service.utils.WriteUserSeq;
+
+import com.cj.codec.pack.conversation.DeleteConversationPack;
+import com.cj.codec.pack.conversation.UpdateConversationPack;
+import com.cj.im.common.ResponseVO;
+import com.cj.im.common.config.AppConfig;
+import com.cj.im.common.constant.Constants;
+import com.cj.im.common.enums.ConversationErrorCode;
+import com.cj.im.common.enums.ConversationTypeEnum;
+import com.cj.im.common.enums.command.ConversationEventCommand;
+import com.cj.im.common.model.ClientInfo;
+import com.cj.im.common.model.SyncReq;
+import com.cj.im.common.model.SyncResp;
+import com.cj.im.common.model.message.MessageReadedContent;
+import com.cj.im.service.conversation.dao.ImConversationSetEntity;
+import com.cj.im.service.conversation.dao.mapper.ImConversationSetMapper;
+import com.cj.im.service.conversation.model.DeleteConversationReq;
+import com.cj.im.service.conversation.model.UpdateConversationReq;
+import com.cj.im.service.seq.RedisSeq;
+import com.cj.im.service.utils.MessageProduce;
+import com.cj.im.service.utils.WriteUserSeq;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +40,7 @@ public class ConversationService {
     ImConversationSetMapper imConversationSetMapper;
 
     @Autowired
-    MessageProducer messageProducer;
+    MessageProduce messageProducer;
 
     @Autowired
     AppConfig appConfig;
@@ -55,6 +55,7 @@ public class ConversationService {
         return type + "_" + fromId + "_" + toId;
     }
 
+    //消息已读会话
     public void  messageMarkRead(MessageReadedContent messageReadedContent){
 
         String toId = messageReadedContent.getToId();
@@ -67,7 +68,10 @@ public class ConversationService {
         query.eq("conversation_id",conversationId);
         query.eq("app_id",messageReadedContent.getAppId());
         ImConversationSetEntity imConversationSetEntity = imConversationSetMapper.selectOne(query);
+
+        //判断是否存在会话
         if(imConversationSetEntity == null){
+            //创建一个会话
             imConversationSetEntity = new ImConversationSetEntity();
             long seq = redisSeq.doGetSeq(messageReadedContent.getAppId() + ":" + Constants.SeqConstants.Conversation);
             imConversationSetEntity.setConversationId(conversationId);
@@ -79,6 +83,7 @@ public class ConversationService {
             writeUserSeq.writeUserSeq(messageReadedContent.getAppId(),
                     messageReadedContent.getFromId(),Constants.SeqConstants.Conversation,seq);
         }else{
+            //更新会话
             long seq = redisSeq.doGetSeq(messageReadedContent.getAppId() + ":" + Constants.SeqConstants.Conversation);
             imConversationSetEntity.setSequence(seq);
             imConversationSetEntity.setReadedSequence(messageReadedContent.getMessageSequence());

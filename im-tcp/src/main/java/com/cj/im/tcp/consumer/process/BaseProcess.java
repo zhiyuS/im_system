@@ -7,6 +7,10 @@ import com.cj.codec.proto.MessagePack;
 import com.cj.im.tcp.util.SessionSocketHolder;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+/**
+ * 抽象类
+ * 给客户端发消息
+ */
 public abstract class BaseProcess {
     private static final Log log =  LogFactory.get();
     public abstract void before();

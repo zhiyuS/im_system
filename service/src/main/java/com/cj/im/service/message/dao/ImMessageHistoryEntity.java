@@ -1,4 +1,4 @@
-package com.lld.im.service.message.dao;
+package com.cj.im.service.message.dao;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -29,5 +29,6 @@ public class ImMessageHistoryEntity {
     private Long messageTime;
 
     private Long createTime;
+
 
 }

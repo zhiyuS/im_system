@@ -1,20 +1,21 @@
-package com.lld.im.service.message.service;
+package com.cj.im.service.message.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lld.im.common.config.AppConfig;
-import com.lld.im.common.constant.Constants;
-import com.lld.im.common.enums.ConversationTypeEnum;
-import com.lld.im.common.enums.DelFlagEnum;
-import com.lld.im.common.model.message.*;
-import com.lld.im.service.conversation.service.ConversationService;
-import com.lld.im.service.group.dao.ImGroupMessageHistoryEntity;
-import com.lld.im.service.group.dao.mapper.ImGroupMessageHistoryMapper;
-import com.lld.im.service.message.dao.ImMessageBodyEntity;
-import com.lld.im.service.message.dao.ImMessageHistoryEntity;
-import com.lld.im.service.message.dao.mapper.ImMessageBodyMapper;
-import com.lld.im.service.message.dao.mapper.ImMessageHistoryMapper;
-import com.lld.im.service.utils.SnowflakeIdWorker;
-import org.apache.commons.lang3.StringUtils;
+
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.cj.im.common.config.AppConfig;
+import com.cj.im.common.constant.Constants;
+import com.cj.im.common.enums.ConversationTypeEnum;
+import com.cj.im.common.enums.DelFlagEnum;
+import com.cj.im.common.model.message.*;
+import com.cj.im.service.group.dao.ImGroupMessageHistoryEntity;
+import com.cj.im.service.group.dao.mapper.ImGroupMemberMapper;
+import com.cj.im.service.group.dao.mapper.ImGroupMessageHistoryMapper;
+import com.cj.im.service.message.dao.ImMessageBodyEntity;
+import com.cj.im.service.message.dao.ImMessageHistoryEntity;
+import com.cj.im.service.message.dao.mapper.ImMessageBodyMapper;
+import com.cj.im.service.message.dao.mapper.ImMessageHistoryMapper;
+import com.cj.im.service.utils.SnowflakeIdWorker;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,32 +54,60 @@ public class MessageStoreService {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
-    @Autowired
-    ConversationService conversationService;
+//    @Autowired
+//    ConversationService conversationService;
 
     @Autowired
     AppConfig appConfig;
 
+    /**
+     * 一对一发送消息
+     * 拆分
+     * @param messageContent
+     */
     @Transactional
     public void storeP2PMessage(MessageContent messageContent){
         //messageContent 转化成 messageBody
-//        ImMessageBody imMessageBodyEntity = extractMessageBody(messageContent);
+        ImMessageBodyEntity imMessageBodyEntity = extractMessageBody(messageContent,1);
         //插入messageBody
-//        imMessageBodyMapper.insert(imMessageBodyEntity);
-//        //转化成MessageHistory
-//        List<ImMessageHistoryEntity> imMessageHistoryEntities = extractToP2PMessageHistory(messageContent, imMessageBodyEntity);
-//        //批量插入
-//        imMessageHistoryMapper.insertBatchSomeColumn(imMessageHistoryEntities);
-//        messageContent.setMessageKey(imMessageBodyEntity.getMessageKey());
-        ImMessageBody imMessageBodyEntity = extractMessageBody(messageContent);
-        DoStoreP2PMessageDto dto = new DoStoreP2PMessageDto();
-        dto.setMessageContent(messageContent);
-        dto.setMessageBody(imMessageBodyEntity);
+        imMessageBodyMapper.insert(imMessageBodyEntity);
+        //转化成MessageHistory
+        List<ImMessageHistoryEntity> imMessageHistoryEntities = extractToP2PMessageHistory(messageContent, imMessageBodyEntity);
+        //批量插入
+        imMessageHistoryMapper.insertBatchSomeColumn(imMessageHistoryEntities);
         messageContent.setMessageKey(imMessageBodyEntity.getMessageKey());
-        rabbitTemplate.convertAndSend(Constants.RabbitConstants.StoreP2PMessage,"",
-                JSONObject.toJSONString(dto));
+
+        //使用RabbitMQ持久化
+//        ImMessageBody imMessageBodyEntity = extractMessageBody(messageContent);
+//        DoStoreP2PMessageDto dto = new DoStoreP2PMessageDto();
+//        dto.setMessageContent(messageContent);
+//        dto.setMessageBody(imMessageBodyEntity);
+//        messageContent.setMessageKey(imMessageBodyEntity.getMessageKey());
+//        rabbitTemplate.convertAndSend(Constants.RabbitConstants.StoreP2PMessage,"",
+//                JSONObject.toJSONString(dto));
     }
 
+
+    /**
+     * 生成插入的数据实体
+     * @param messageContent
+     * @param notUseMq
+     * @return
+     */
+    public ImMessageBodyEntity extractMessageBody(MessageContent messageContent,int notUseMq){
+        ImMessageBodyEntity messageBody = new ImMessageBodyEntity();
+        messageBody.setAppId(messageContent.getAppId());
+        //雪花算法生成messageKey
+        messageBody.setMessageKey(snowflakeIdWorker.nextId());
+        messageBody.setCreateTime(System.currentTimeMillis());
+        messageBody.setSecurityKey("");
+        messageBody.setExtra(messageContent.getExtra());
+        messageBody.setDelFlag(DelFlagEnum.NORMAL.getCode());
+        messageBody.setMessageTime(messageContent.getMessageTime());
+        messageBody.setMessageBody(messageContent.getMessageBody());
+
+        return messageBody;
+    }
     public ImMessageBody extractMessageBody(MessageContent messageContent){
         ImMessageBody messageBody = new ImMessageBody();
         messageBody.setAppId(messageContent.getAppId());
@@ -89,6 +118,7 @@ public class MessageStoreService {
         messageBody.setDelFlag(DelFlagEnum.NORMAL.getCode());
         messageBody.setMessageTime(messageContent.getMessageTime());
         messageBody.setMessageBody(messageContent.getMessageBody());
+
         return messageBody;
     }
 
@@ -100,12 +130,14 @@ public class MessageStoreService {
         fromHistory.setOwnerId(messageContent.getFromId());
         fromHistory.setMessageKey(imMessageBodyEntity.getMessageKey());
         fromHistory.setCreateTime(System.currentTimeMillis());
+        fromHistory.setSequence(messageContent.getMessageSequence());
 
         ImMessageHistoryEntity toHistory = new ImMessageHistoryEntity();
         BeanUtils.copyProperties(messageContent,toHistory);
         toHistory.setOwnerId(messageContent.getToId());
         toHistory.setMessageKey(imMessageBodyEntity.getMessageKey());
         toHistory.setCreateTime(System.currentTimeMillis());
+        toHistory.setSequence(messageContent.getMessageSequence());
 
         list.add(fromHistory);
         list.add(toHistory);
@@ -114,18 +146,27 @@ public class MessageStoreService {
 
     @Transactional
     public void storeGroupMessage(GroupChatMessageContent messageContent){
-        ImMessageBody imMessageBody = extractMessageBody(messageContent);
-        DoStoreGroupMessageDto dto = new DoStoreGroupMessageDto();
-        dto.setMessageBody(imMessageBody);
-        dto.setGroupChatMessageContent(messageContent);
-        rabbitTemplate.convertAndSend(Constants.RabbitConstants.StoreGroupMessage,
-                "",
-                JSONObject.toJSONString(dto));
+        ImMessageBodyEntity imMessageBody = extractMessageBody(messageContent,1);
+        imMessageBodyMapper.insert(imMessageBody);
+        ImGroupMessageHistoryEntity imGroupMessageHistoryEntity = extractToGroupMessageHistory(messageContent, imMessageBody);
+
+        imGroupMessageHistoryMapper.insert(imGroupMessageHistoryEntity);
+        messageContent.setMessageKey(imMessageBody.getMessageKey());
+
+        //采用RabbitMQ异步持久化
+//        DoStoreGroupMessageDto dto = new DoStoreGroupMessageDto();
+//        dto.setMessageBody(imMessageBody);
+//
+//        dto.setGroupChatMessageContent(messageContent);
+//        rabbitTemplate.convertAndSend(Constants.RabbitConstants.StoreGroupMessage,
+//                "",
+//                JSONObject.toJSONString(dto));
+
         messageContent.setMessageKey(imMessageBody.getMessageKey());
     }
 
     private ImGroupMessageHistoryEntity extractToGroupMessageHistory(GroupChatMessageContent
-                                                                     messageContent ,ImMessageBodyEntity messageBodyEntity){
+                                                                     messageContent , ImMessageBodyEntity messageBodyEntity){
         ImGroupMessageHistoryEntity result = new ImGroupMessageHistoryEntity();
         BeanUtils.copyProperties(messageContent,result);
         result.setGroupId(messageContent.getGroupId());
@@ -169,9 +210,8 @@ public class MessageStoreService {
         if(operations.zCard(fromKey) > appConfig.getOfflineMessageCount()){
             operations.removeRange(fromKey,0,0);
         }
-        offlineMessage.setConversationId(conversationService.convertConversationId(
-                ConversationTypeEnum.P2P.getCode(),offlineMessage.getFromId(),offlineMessage.getToId()
-        ));
+//
+
         // 插入 数据 根据messageKey 作为分值
         operations.add(fromKey,JSONObject.toJSONString(offlineMessage),
                 offlineMessage.getMessageKey());
@@ -181,9 +221,9 @@ public class MessageStoreService {
             operations.removeRange(toKey,0,0);
         }
 
-        offlineMessage.setConversationId(conversationService.convertConversationId(
-                ConversationTypeEnum.P2P.getCode(),offlineMessage.getToId(),offlineMessage.getFromId()
-        ));
+//        offlineMessage.setConversationId(conversationService.convertConversationId(
+//                ConversationTypeEnum.P2P.getCode(),offlineMessage.getToId(),offlineMessage.getFromId()
+//        ));
         // 插入 数据 根据messageKey 作为分值
         operations.add(toKey,JSONObject.toJSONString(offlineMessage),
                 offlineMessage.getMessageKey());
@@ -209,9 +249,9 @@ public class MessageStoreService {
             String toKey = offlineMessage.getAppId() + ":" +
                     Constants.RedisConstants.OfflineMessage + ":" +
                     memberId;
-            offlineMessage.setConversationId(conversationService.convertConversationId(
-                    ConversationTypeEnum.GROUP.getCode(),memberId,offlineMessage.getToId()
-            ));
+//            offlineMessage.setConversationId(conversationService.convertConversationId(
+//                    ConversationTypeEnum.GROUP.getCode(),memberId,offlineMessage.getToId()
+//            ));
             if(operations.zCard(toKey) > appConfig.getOfflineMessageCount()){
                 operations.removeRange(toKey,0,0);
             }

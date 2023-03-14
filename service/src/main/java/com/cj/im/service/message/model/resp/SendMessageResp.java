@@ -1,4 +1,4 @@
-package com.lld.im.service.message.model.resp;
+package com.cj.im.service.message.model.resp;
 
 import lombok.Data;
 

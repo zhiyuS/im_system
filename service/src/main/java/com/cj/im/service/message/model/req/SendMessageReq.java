@@ -1,6 +1,6 @@
-package com.lld.im.service.message.model.req;
+package com.cj.im.service.message.model.req;
 
-import com.lld.im.common.model.RequestBase;
+import com.cj.im.common.model.RequestBase;
 import lombok.Data;
 
 /**

@@ -6,6 +6,7 @@ import com.cj.im.common.constant.Constants;
 import com.cj.im.common.route.RouteHandler;
 import com.cj.im.common.route.RouteInfo;
 import com.cj.im.service.user.model.req.GetUserInfoReq;
+import com.cj.im.service.user.model.req.GetUserSequenceReq;
 import com.cj.im.service.user.model.req.ImportUserReq;
 import com.cj.im.service.user.model.req.LoginReq;
 import com.cj.im.service.user.service.UserService;
@@ -61,6 +62,12 @@ public class ImUserController {
 
 
         return null;
+    }
+    @RequestMapping("/getUserSequence")
+    public ResponseVO getUserSequence(@RequestBody @Validated
+                                              GetUserSequenceReq req, Integer appId) {
+        req.setAppId(appId);
+        return userService.getUserSequence(req);
     }
 
 

@@ -309,6 +309,7 @@ public class ImGroupServiceImpl implements ImGroupService {
         return ResponseVO.successResponse();
     }
 
+    //判断群是否存在
     @Override
     public ResponseVO getGroup(String groupId, Integer appId) {
 
@@ -394,6 +395,9 @@ public class ImGroupServiceImpl implements ImGroupService {
         ResponseVO<Collection<String>> memberJoinedGroup = groupMemberService.syncMemberJoinedGroup(userId, appId);
         if(!memberJoinedGroup.isOk()){
             throw new ApplicationException(500,"");
+        }
+        if(memberJoinedGroup.getData().isEmpty()){
+            return 0l;
         }
         Long maxSeq =
                 imGroupDataMapper.getGroupMaxSeq(memberJoinedGroup.getData(),

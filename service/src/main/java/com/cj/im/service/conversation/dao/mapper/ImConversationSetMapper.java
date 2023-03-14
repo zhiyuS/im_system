@@ -1,7 +1,8 @@
-package com.lld.im.service.conversation.dao.mapper;
+package com.cj.im.service.conversation.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lld.im.service.conversation.dao.ImConversationSetEntity;
+import com.cj.im.service.conversation.dao.ImConversationSetEntity;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @author: lld
  * @version: 1.0
  */
-@Repository
+@Mapper
 public interface ImConversationSetMapper extends BaseMapper<ImConversationSetEntity> {
 
     @Update(" update im_conversation_set set readed_sequence = #{readedSequence},sequence = #{sequence} " +

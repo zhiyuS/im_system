@@ -1,4 +1,4 @@
-package com.lld.im.service.config;
+package com.cj.im.service.config;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;

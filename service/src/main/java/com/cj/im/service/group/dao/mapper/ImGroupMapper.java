@@ -13,7 +13,7 @@ public interface ImGroupMapper extends BaseMapper<ImGroupEntity> {
 
     /**
      * @description 获取加入的群的最大seq
-     * @author chackylee
+     * @author cj
      * @return java.lang.Long
      */
     @Select(" <script> " +

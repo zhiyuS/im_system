@@ -18,7 +18,9 @@ import com.cj.im.service.friendship.model.req.ApproverFriendRequestReq;
 import com.cj.im.service.friendship.model.req.FriendDto;
 import com.cj.im.service.friendship.model.req.ReadFriendShipRequestReq;
 import com.cj.im.service.friendship.service.ImFriendShipRequestService;
+import com.cj.im.service.seq.RedisSeq;
 import com.cj.im.service.utils.MessageProduce;
+import com.cj.im.service.utils.WriteUserSeq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,11 @@ public class ImFriendShipRequestServiceImpl implements ImFriendShipRequestServic
 
     @Autowired
     MessageProduce messageProducer;
+    @Autowired
+    RedisSeq redisSeq;
 
+    @Autowired
+    WriteUserSeq writeUserSeq;
     @Override
     public ResponseVO addFriendShipReq(String fromId, Integer appId, FriendDto dto) {
 
@@ -47,17 +53,25 @@ public class ImFriendShipRequestServiceImpl implements ImFriendShipRequestServic
         queryWrapper.eq("to_id",dto.getToId());
         ImFriendShipRequestEntity request = friendShipRequestMapper.selectOne(queryWrapper);
 
+        long seq = redisSeq.doGetSeq(appId+":"+
+                Constants.SeqConstants.FriendshipRequest);
+
+
         if(ObjectUtil.isNull(request)){
-            ImFriendShipRequestEntity imFriendShipRequestEntity = new ImFriendShipRequestEntity();
 
-            BeanUtil.copyProperties(dto,imFriendShipRequestEntity);
-            imFriendShipRequestEntity.setAppId(appId);
-            imFriendShipRequestEntity.setFromId(fromId);
+            request = new ImFriendShipRequestEntity();
+            request.setAddSource(dto.getAddSource());
+            request.setAddWording(dto.getAddWording());
+            request.setSequence(seq);
+            request.setAppId(appId);
+            request.setFromId(fromId);
+            request.setToId(dto.getToId());
+            request.setReadStatus(0);
+            request.setApproveStatus(0);
+            request.setRemark(dto.getRemark());
+            request.setCreateTime(System.currentTimeMillis());
+            friendShipRequestMapper.insert(request);
 
-            int insert = friendShipRequestMapper.insert(imFriendShipRequestEntity);
-            if(insert != 1){
-                return ResponseVO.errorResponse(FriendShipErrorCode.ADD_FRIEND_ERROR);
-            }
         }else{
             //修改记录内容 和更新时间
             if(StrUtil.isNotBlank(dto.getAddSource())){
@@ -69,10 +83,11 @@ public class ImFriendShipRequestServiceImpl implements ImFriendShipRequestServic
             if(StrUtil.isNotBlank(dto.getAddWording())){
                 request.setAddWording(dto.getAddWording());
             }
+            request.setSequence(seq);
             friendShipRequestMapper.updateById(request);
         }
-//        writeUserSeq.writeUserSeq(appId,dto.getToId(),
-//                Constants.SeqConstants.FriendshipRequest,seq);
+        writeUserSeq.writeUserSeq(appId,dto.getToId(),
+                Constants.SeqConstants.FriendshipRequest,seq);
 
         //发送好友申请的tcp给接收方
         messageProducer.sendToUser(dto.getToId(),
@@ -95,12 +110,18 @@ public class ImFriendShipRequestServiceImpl implements ImFriendShipRequestServic
             throw new ApplicationException(FriendShipErrorCode.NOT_APPROVER_OTHER_MAN_REQUEST);
         }
 
+        long seq = redisSeq.doGetSeq(req.getAppId()+":"+
+                Constants.SeqConstants.FriendshipRequest);
 
         ImFriendShipRequestEntity update = new ImFriendShipRequestEntity();
         update.setApproveStatus(req.getStatus());
         update.setUpdateTime(System.currentTimeMillis());
         update.setId(req.getId());
+        update.setSequence(seq);
+
         friendShipRequestMapper.updateById(update);
+        writeUserSeq.writeUserSeq(req.getAppId(),req.getOperater(),
+                Constants.SeqConstants.FriendshipRequest,seq);
 
 
         if(ApproverFriendRequestStatusEnum.AGREE.getCode() == req.getStatus()){
@@ -143,10 +164,15 @@ public class ImFriendShipRequestServiceImpl implements ImFriendShipRequestServic
         update.setReadStatus(1);
         friendShipRequestMapper.update(update, query);
 
+        long seq = redisSeq.doGetSeq(req.getAppId()+":"+
+                Constants.SeqConstants.FriendshipRequest);
+        writeUserSeq.writeUserSeq(req.getAppId(),req.getOperater(),
+                Constants.SeqConstants.FriendshipRequest,seq);
+
         //TCP通知
         ReadAllFriendRequestPack readAllFriendRequestPack = new ReadAllFriendRequestPack();
         readAllFriendRequestPack.setFromId(req.getFromId());
-//        readAllFriendRequestPack.setSequence(seq);
+        readAllFriendRequestPack.setSequence(seq);
         messageProducer.sendToUser(req.getFromId(),req.getClientType(),req.getImei(),FriendshipEventCommand
                 .FRIEND_REQUEST_READ,readAllFriendRequestPack,req.getAppId());
 

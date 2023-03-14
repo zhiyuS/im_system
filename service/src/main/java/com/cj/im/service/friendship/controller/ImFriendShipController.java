@@ -1,6 +1,11 @@
 package com.cj.im.service.friendship.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.cj.im.common.ResponseVO;
+import com.cj.im.common.enums.FriendShipErrorCode;
+import com.cj.im.common.model.SyncReq;
+import com.cj.im.service.friendship.dao.ImFriendShipEntity;
+import com.cj.im.service.friendship.dao.mapper.ImFriendShipMapper;
 import com.cj.im.service.friendship.model.req.*;
 import com.cj.im.service.friendship.service.ImFriendShipService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +105,8 @@ public class ImFriendShipController {
         return imFriendShipService.addBlack(req);
     }
 
+
+
     /**
      * 删除黑名单
      * @param req
@@ -121,6 +128,12 @@ public class ImFriendShipController {
     public ResponseVO checkBlack(@RequestBody @Validated CheckFriendReq req, Integer appId){
         req.setAppId(appId);
         return imFriendShipService.checkFriendBlack(req);
+    }
+    @RequestMapping("/syncFriendshipList")
+    public ResponseVO syncFriendshipList(@RequestBody @Validated
+                                                 SyncReq req, Integer appId){
+        req.setAppId(appId);
+        return imFriendShipService.syncFriendshipList(req);
     }
 
 

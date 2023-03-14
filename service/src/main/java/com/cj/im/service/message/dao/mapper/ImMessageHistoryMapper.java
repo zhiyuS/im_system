@@ -1,12 +1,13 @@
-package com.lld.im.service.message.dao.mapper;
+package com.cj.im.service.message.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lld.im.service.message.dao.ImMessageHistoryEntity;
+import com.cj.im.service.message.dao.ImMessageHistoryEntity;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
-@Repository
+@Mapper
 public interface ImMessageHistoryMapper extends BaseMapper<ImMessageHistoryEntity> {
 
     /**

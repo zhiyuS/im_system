@@ -1,6 +1,6 @@
-package com.lld.im.service.conversation.model;
+package com.cj.im.service.conversation.model;
 
-import com.lld.im.common.model.RequestBase;
+import com.cj.im.common.model.RequestBase;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import com.cj.im.service.friendship.dao.ImFriendShipEntity;
 import com.cj.im.service.friendship.model.req.CheckFriendReq;
-import com.cj.im.service.friendship.model.resp.CheckFriendResp;
+import com.cj.im.service.friendship.model.resp.CheckFriendShipResp;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -19,7 +19,7 @@ public interface ImFriendShipMapper extends BaseMapper<ImFriendShipEntity> {
             "#{id}" +
             "</foreach>" +
             "</script>")
-    List<CheckFriendResp> checkFriendSingle(CheckFriendReq req);
+    List<CheckFriendShipResp> checkFriendSingle(CheckFriendReq req);
     @Select("<script>" +
             " select a.fromId,a.toId , ( \n" +
             " case \n" +
@@ -42,7 +42,7 @@ public interface ImFriendShipMapper extends BaseMapper<ImFriendShipEntity> {
             " ) as b " +
             " on a.fromId = b.toId AND b.fromId = a.toId "+
             "</script>")
-    List<CheckFriendResp> checkFriendBoth(CheckFriendReq req);
+    List<CheckFriendShipResp> checkFriendBoth(CheckFriendReq req);
 
     @Select("<script>" +
             " select from_id AS fromId, to_id AS toId , if(black = 1,1,0) as status from im_friendship where app_id = #{appId} and from_id = #{fromId}  and  to_id in " +
@@ -51,7 +51,7 @@ public interface ImFriendShipMapper extends BaseMapper<ImFriendShipEntity> {
             "</foreach>" +
             "</script>"
     )
-    List<CheckFriendResp> checkFriendBlackSingle(CheckFriendReq req);
+    List<CheckFriendShipResp> checkFriendBlackSingle(CheckFriendReq req);
 
     @Select("<script>" +
             " select a.fromId,a.toId , ( \n" +
@@ -76,5 +76,10 @@ public interface ImFriendShipMapper extends BaseMapper<ImFriendShipEntity> {
             " on a.fromId = b.toId AND b.fromId = a.toId "+
             "</script>"
     )
-    List<CheckFriendResp> checkFriendBlackBoth(CheckFriendReq req);
+    List<CheckFriendShipResp> checkFriendBlackBoth(CheckFriendReq req);
+
+    List<CheckFriendShipResp> checkFriendShipBlackBoth(CheckFriendReq toId);
+
+    @Select(" select max(friend_sequence) from im_friendship where app_id = #{appId} AND from_id = #{userId} ")
+    Long getFriendShipMaxSeq(Integer appId,String userId);
 }

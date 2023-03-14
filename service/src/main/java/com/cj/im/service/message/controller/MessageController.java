@@ -1,11 +1,12 @@
-package com.lld.im.service.message.controller;
+package com.cj.im.service.message.controller;
 
-import com.lld.im.common.ResponseVO;
-import com.lld.im.common.model.SyncReq;
-import com.lld.im.common.model.message.CheckSendMessageReq;
-import com.lld.im.service.message.model.req.SendMessageReq;
-import com.lld.im.service.message.service.MessageSyncService;
-import com.lld.im.service.message.service.P2PMessageService;
+
+import com.cj.im.common.ResponseVO;
+import com.cj.im.common.model.SyncReq;
+import com.cj.im.common.model.message.CheckSendMessageReq;
+import com.cj.im.service.message.model.req.SendMessageReq;
+import com.cj.im.service.message.service.MessageSyncService;
+import com.cj.im.service.message.service.P2PMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
