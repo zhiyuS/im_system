@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   redis:
-    host: 42.193.140.45
+    host: 127.0.0.1
     port: 6378
     jedis:
       pool:
@@ -12,16 +12,16 @@ spring:
         min-idle: 10
     password:
   rabbitmq:
-    host: 42.193.140.45
+    host: 127.0.0.1
     port: 5672
-    addresses: 42.193.140.45
+    addresses: 127.0.0.1
     username: guest
     password: guest
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://42.193.140.45:3307/im_system?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
+    url: jdbc:mysql://127.0.0.1:3307/im_system?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
   application:
     name: im-core
 appConfig:
