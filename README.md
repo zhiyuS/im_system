@@ -68,10 +68,11 @@
   - 拆分消息持久化
 - 可靠性
   - ack
+  [!ack 图片](http://blog.pinbaiyun.com/upload/%E5%9B%BE%E7%89%87-sgcd.png)
 - 有序性
   - Redis自增ID
 - 幂等性
-  - 
+
 
 
 ## 代码模块介绍
