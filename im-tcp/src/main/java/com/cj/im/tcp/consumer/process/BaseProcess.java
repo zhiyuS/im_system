@@ -16,11 +16,13 @@ public abstract class BaseProcess {
     public abstract void before();
     public void process(MessagePack messagePack){
         before();
+        //根据toid，appId，等获取channel
         NioSocketChannel channel = SessionSocketHolder.get(messagePack.getToId(), messagePack.getAppId(), messagePack.getClientType(), messagePack.getImei());
         if(ObjectUtil.isNull(channel)){
             log.info("获取客户端失败");
             return;
         }
+        //写入消息
         channel.writeAndFlush(messagePack);
         after();
     }

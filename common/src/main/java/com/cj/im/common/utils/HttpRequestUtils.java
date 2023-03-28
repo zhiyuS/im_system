@@ -43,7 +43,7 @@ public class HttpRequestUtils {
      */
     public String doGet(String url, Map<String, Object> params, Map<String, Object> header, String charset) throws Exception {
 
-        if (StringUtils.isEmpty(charset)) {
+        if (StrUtil.isEmpty(charset)) {
             charset = "utf-8";
         }
         URIBuilder uriBuilder = new URIBuilder(url);
@@ -118,7 +118,7 @@ public class HttpRequestUtils {
      */
     public String doPost(String url, Map<String, Object> params, Map<String, Object> header, String jsonBody, String charset) throws Exception {
 
-        if (StringUtils.isEmpty(charset)) {
+        if (StrUtil.isEmpty(charset)) {
             charset = "utf-8";
         }
         URIBuilder uriBuilder = new URIBuilder(url);

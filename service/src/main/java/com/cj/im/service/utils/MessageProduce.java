@@ -1,5 +1,6 @@
 package com.cj.im.service.utils;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.Log;
@@ -73,7 +74,7 @@ public class MessageProduce {
 
     public void sendToUser(String toId, Integer clientType,String imei, Command command,
                            Object data, Integer appId){
-        if(clientType != null && StringUtils.isNotBlank(imei)){
+        if(clientType != null && StrUtil.isNotBlank(imei)){
             ClientInfo clientInfo = new ClientInfo(appId, clientType, imei);
             sendToUserExceptClient(toId,command,data,clientInfo);
         }else{

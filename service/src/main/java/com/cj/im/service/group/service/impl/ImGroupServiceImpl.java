@@ -1,5 +1,6 @@
 package com.cj.im.service.group.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -61,7 +62,7 @@ public class ImGroupServiceImpl implements ImGroupService {
         //1.判断群id是否存在
         QueryWrapper<ImGroupEntity> query = new QueryWrapper<>();
 
-        if (StringUtils.isEmpty(req.getGroupId())) {
+        if (StrUtil.isEmpty(req.getGroupId())) {
             req.setGroupId(UUID.randomUUID().toString().replace("-", ""));
         } else {
             query.eq("group_id", req.getGroupId());
@@ -105,7 +106,7 @@ public class ImGroupServiceImpl implements ImGroupService {
         //1.判断群id是否存在
         QueryWrapper<ImGroupEntity> query = new QueryWrapper<>();
 
-        if (StringUtils.isEmpty(req.getGroupId())) {
+        if (StrUtil.isEmpty(req.getGroupId())) {
             req.setGroupId(UUID.randomUUID().toString().replace("-", ""));
         } else {
             query.eq("group_id", req.getGroupId());

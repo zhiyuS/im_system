@@ -1,5 +1,6 @@
 package com.cj.im.service.group.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -371,7 +372,7 @@ public class ImGroupMemberServiceImpl implements ImGroupMemberService {
 
         if (isadmin) {
             //昵称只能自己修改 权限只能群主或管理员修改
-            if (StringUtils.isBlank(req.getAlias()) && !isMeOperate) {
+            if (StrUtil.isBlank(req.getAlias()) && !isMeOperate) {
                 return ResponseVO.errorResponse(GroupErrorCode.THIS_OPERATE_NEED_ONESELF);
             }
             //私有群不能设置管理员
@@ -403,7 +404,7 @@ public class ImGroupMemberServiceImpl implements ImGroupMemberService {
 
         ImGroupMemberEntity update = new ImGroupMemberEntity();
 
-        if (StringUtils.isNotBlank(req.getAlias())) {
+        if (StrUtil.isNotBlank(req.getAlias())) {
             update.setAlias(req.getAlias());
         }
 

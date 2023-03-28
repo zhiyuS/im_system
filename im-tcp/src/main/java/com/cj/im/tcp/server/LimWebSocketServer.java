@@ -1,5 +1,7 @@
 package com.cj.im.tcp.server;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.cj.codec.WebSocketMessageDecoder;
 import com.cj.codec.WebSocketMessageEncoder;
 import com.cj.codec.config.BootstrapConfig;
@@ -17,7 +19,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import lombok.extern.slf4j.Slf4j;
 
 public class LimWebSocketServer {
-
+    private static final Log log = LogFactory.get();
     private BootstrapConfig.TcpConfig config;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
@@ -57,6 +59,6 @@ public class LimWebSocketServer {
 
     public void start(){
         server.bind(config.getWebSocketPort()); // (7)
-        System.out.println("WebSocketServer start success");
+        log.info("WebSocketServer start success");
     }
 }

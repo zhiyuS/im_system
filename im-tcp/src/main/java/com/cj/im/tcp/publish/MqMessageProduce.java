@@ -10,6 +10,8 @@ import com.cj.im.tcp.util.MqFactory;
 import com.rabbitmq.client.Channel;
 
 import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -40,4 +42,5 @@ public class MqMessageProduce {
             log.error("发送消息出现异常：{}",e.getMessage());
         }
     }
+
 }

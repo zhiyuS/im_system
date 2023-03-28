@@ -56,9 +56,11 @@ public class ChatOperateReciver {
         try {
             JSONObject jsonObject = JSON.parseObject(msg);
             Integer command = jsonObject.getInteger("command");
+            //单聊
             if(command.equals(MessageCommand.MSG_P2P.getCommand())) {
                 MessageContent messageContent = JSON.toJavaObject(jsonObject, MessageContent.class);
                 p2PMessageService.process(messageContent);
+                //接受消息
             }else if(command.equals(MessageCommand.MSG_RECIVE_ACK.getCommand())){
                 MessageReciveAckContent messageReciveAckContent;
                 messageReciveAckContent = jsonObject.toJavaObject(MessageReciveAckContent.class);

@@ -1,8 +1,9 @@
 package com.cj.im.service.message.service;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+
 import com.cj.im.common.config.AppConfig;
 import com.cj.im.common.constant.Constants;
 import com.cj.im.common.enums.ConversationTypeEnum;
@@ -186,7 +187,7 @@ public class MessageStoreService {
         //appid : cache : messageId
         String key = appId + ":" + Constants.RedisConstants.cacheMessage + ":" + messageId;
         String msg = stringRedisTemplate.opsForValue().get(key);
-        if(StringUtils.isBlank(msg)){
+        if(StrUtil.isBlank(msg)){
             return null;
         }
         return JSONObject.parseObject(msg, clazz);

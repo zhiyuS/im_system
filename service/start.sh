@@ -1,0 +1,1 @@
+docker run -p 8081:8081 --name im-service -d im-service:0.1

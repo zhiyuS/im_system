@@ -26,8 +26,7 @@ public class UserSessionUtils {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
-    //1.获取用户所有的session
-
+    //1.获取用户登录的session
     public List<UserSession> getUserSession(Integer appId, String userId){
 
         String userSessionKey = appId + Constants.RedisConstants.UserSessionConstants
@@ -47,9 +46,7 @@ public class UserSessionUtils {
         return list;
     }
 
-    //2.获取用户除了本端的session
-
-    //1.获取用户所有的session
+    //2.获取用户所有的session
 
     public UserSession getUserSession(Integer appId,String userId
             ,Integer clientType,String imei){

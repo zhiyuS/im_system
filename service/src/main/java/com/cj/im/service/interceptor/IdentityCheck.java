@@ -1,14 +1,17 @@
 package com.cj.im.service.interceptor;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.cj.im.common.BaseErrorCode;
+import com.cj.im.common.ResponseVO;
 import com.cj.im.common.config.AppConfig;
 import com.cj.im.common.constant.Constants;
 import com.cj.im.common.enums.GateWayErrorCode;
 import com.cj.im.common.exception.ApplicationExceptionEnum;
 import com.cj.im.common.utils.SigAPI;
+import com.cj.im.service.user.dao.ImUserDataEntity;
 import com.cj.im.service.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +47,7 @@ public class IdentityCheck {
         String cacheUserSig = stringRedisTemplate.opsForValue()
                 .get(appId + ":" + Constants.RedisConstants.userSign + ":"
                 + identifier + userSig);
-        if(!StringUtils.isBlank(cacheUserSig) && Long.valueOf(cacheUserSig)
+        if(!StrUtil.isBlank(cacheUserSig) && Long.valueOf(cacheUserSig)
          >  System.currentTimeMillis() / 1000){
             return BaseErrorCode.SUCCESS;
         }
@@ -53,14 +56,15 @@ public class IdentityCheck {
         String privateKey = appConfig.getPrivateKey();
 
         //根据appid + 秘钥创建sigApi
-//        SigAPI sigAPI = new SigAPI(Long.valueOf(appId), privateKey);
+        SigAPI sigAPI = new SigAPI(Long.valueOf(appId), privateKey);
 
         //调用sigApi对userSig解密
-        JSONObject jsonObject = SigAPI.decodeUserSig(userSig);
+        JSONObject jsonObject = sigAPI.decodeUserSig(userSig);
 
         //取出解密后的appid 和 操作人 和 过期时间做匹配，不通过则提示错误
         Long expireTime = 0L;
         Long expireSec = 0L;
+        Long time = 0L;
         String decoerAppId = "";
         String decoderidentifier = "";
 
@@ -93,6 +97,7 @@ public class IdentityCheck {
         }
 
         //appid + "xxx" + userId + sign
+//        String s = sigAPI.genUserSig(identifier, expireSec,time, null);
 
         String key = appId + ":" + Constants.RedisConstants.userSign + ":"
                 +identifier + userSig;
@@ -101,8 +106,19 @@ public class IdentityCheck {
         stringRedisTemplate.opsForValue().set(
                 key,expireTime.toString(),etime, TimeUnit.SECONDS
         );
-
+        setIsAdmin(identifier,Integer.valueOf(appId));
         return BaseErrorCode.SUCCESS;
+
+    }
+
+    private void setIsAdmin(String identifier, Integer appId) {
+        ResponseVO<ImUserDataEntity> singleUserInfo = imUserService.getSingleUserInfo(identifier, appId);
+
+        if(singleUserInfo.isOk()){
+            RequestHolder.set(singleUserInfo.getData().getUserType() == 4);
+        }else{
+            RequestHolder.set(false);
+        }
     }
 
 

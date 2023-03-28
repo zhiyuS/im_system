@@ -1,5 +1,5 @@
 # 一款IM即时通讯系统
-可供商家和个人免费接入
+
 
 ## 架构设计
 - sdk
@@ -32,10 +32,6 @@
   - 读扩散
   - 群聊消息同步
   - 读扩散-写扩散
-  
-  
-  <img src="https://avatars.githubusercontent.com/u/35839645?v=4" width=100 height=100>
-
 - 群组模块
   - 好友群组
     - 群禁言
@@ -68,7 +64,9 @@
   - 拆分消息持久化
 - 可靠性
   - ack
-  <img url="http://blog.pinbaiyun.com/upload/%E5%9B%BE%E7%89%87-sgcd.png">
+  <img src="http://blog.pinbaiyun.com/upload/%E5%9B%BE%E7%89%87-sgcd.png">
+  <img src="http://blog.pinbaiyun.com/upload/%E5%9B%BE%E7%89%87-nvat.png">
+
 - 有序性
   - Redis自增ID
 - 幂等性

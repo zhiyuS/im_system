@@ -1,6 +1,8 @@
 package com.cj.im.tcp.server;
 
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.cj.codec.MessageDecoder;
 import com.cj.codec.MessageEncoder;
 import com.cj.codec.config.BootstrapConfig;
@@ -16,6 +18,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class LimServer {
@@ -23,6 +27,7 @@ public class LimServer {
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
     private ServerBootstrap server;
+    private static Logger logger = LoggerFactory.getLogger(LimServer.class);
 
     public LimServer(BootstrapConfig.TcpConfig config) {
         this.config = config;
@@ -52,7 +57,9 @@ public class LimServer {
     public void start(){
         // Bind and start to accept incoming connections.
         server.bind(config.getTcpPort()); // (7)
+        logger.info("tcp start success");
         System.out.println("tcp start success");
+
 
     }
 }

@@ -51,6 +51,7 @@ public class MqMessageConsumer {
                         MessagePack messagePack = JSON.parseObject(s,MessagePack.class);
 
                         BaseProcess messageProcess = ProcessFactory.getMessageProcess(null);
+                        // 写入消息
                         messageProcess.process(messagePack);
                         /**
                          * 第一个参数

@@ -134,7 +134,7 @@ public class SigAPI {
         }
     }
 
-    private String genUserSig(String userid, long expire, byte[] userbuf) {
+    public String genUserSig(String userid, long expire, byte[] userbuf) {
 
         long currTime = System.currentTimeMillis() / 1000;
 
@@ -150,6 +150,34 @@ public class SigAPI {
             sigDoc.put("TLS.userbuf", base64UserBuf);
         }
         String sig = hmacsha256(userid, currTime, expire, base64UserBuf);
+        if (sig.length() == 0) {
+            return "";
+        }
+        sigDoc.put("TLS.sig", sig);
+        Deflater compressor = new Deflater();
+        compressor.setInput(sigDoc.toString().getBytes(StandardCharsets.UTF_8));
+        compressor.finish();
+        byte[] compressedBytes = new byte[2048];
+        int compressedBytesLength = compressor.deflate(compressedBytes);
+        compressor.end();
+        return (new String(Base64URL.base64EncodeUrl(Arrays.copyOfRange(compressedBytes,
+                0, compressedBytesLength)))).replaceAll("\\s*", "");
+    }
+    public String genUserSig(String userid, long expire,long time,byte[] userbuf) {
+
+
+        JSONObject sigDoc = new JSONObject();
+        sigDoc.put("TLS.identifier", userid);
+        sigDoc.put("TLS.appId", appId);
+        sigDoc.put("TLS.expire", expire);
+        sigDoc.put("TLS.expireTime", time);
+
+        String base64UserBuf = null;
+        if (null != userbuf) {
+            base64UserBuf = Base64.getEncoder().encodeToString(userbuf).replaceAll("\\s*", "");
+            sigDoc.put("TLS.userbuf", base64UserBuf);
+        }
+        String sig = hmacsha256(userid, time, expire, base64UserBuf);
         if (sig.length() == 0) {
             return "";
         }
