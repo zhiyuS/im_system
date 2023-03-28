@@ -86,5 +86,5 @@
 **如果对您有帮助，欢迎点个star,万分感谢😁** 
 
 ps:闲来无事会写点技术小文章，可以多多关注呀
-##### 博客地址:<a href="http://blog.pinbaiyun.com/">点击跳转</a>
+##### 博客地址:<a href="https://ziyus.cn/">点击跳转</a>
 
