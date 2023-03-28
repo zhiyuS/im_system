@@ -7,16 +7,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="message-store" />
+        <module name="im-message-store" />
         <module name="im-tcp" />
         <module name="common" />
-        <module name="service" />
         <module name="im-codec" />
+        <module name="service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="im-message-store" target="8" />
+      <module name="message-store" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common" options="-parameters" />
+      <module name="im-codec" options="-parameters" />
+      <module name="im-tcp" options="-parameters" />
       <module name="service" options="-parameters" />
     </option>
   </component>
